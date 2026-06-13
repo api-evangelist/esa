@@ -1,0 +1,155 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: European Space Agency (ESA)
+providerId: esa
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Earth Observation
+  - Copernicus
+  - Space Weather
+  - Astronomy
+  - Plans
+description: >-
+  The Copernicus Data Space Ecosystem (CDSE) offers a free-tier account for all
+  registered users with monthly quotas replenished on the first day of each month.
+  ESA Space Weather HAPI requires M2M credentials but does not publish metered
+  billing. ESA Gaia TAP, ESASky Legacy TAP, and ESA CCI ESGF are open-access
+  scientific services with no published pricing. The ESA Datalabs GraphQL API
+  requires an ESA Cosmos LDAP account and is not publicly priced.
+sources:
+  - https://documentation.dataspace.copernicus.eu/Quotas.html
+  - https://dataspace.copernicus.eu/analyse/apis
+  - https://swe.ssa.esa.int/swe-hapi-server
+  - https://www.cosmos.esa.int/web/gaia-users/archive/programmatic-access
+plans:
+  - id: esa-copernicus-free
+    name: Copernicus Data Space Ecosystem - Free Tier
+    type: free
+    description: >-
+      All registered Copernicus General Users receive monthly quotas at no cost.
+      Quotas reset on the first day of each month. If download volume exceeds the
+      S3/OData/STAC 12 TB monthly transfer quota, bandwidth is reduced to 1 MB/s
+      with a single concurrent connection until the next reset. Extended quotas are
+      available for Copernicus Service projects and ESA Network of Resources
+      participants.
+    entries:
+      - label: Sentinel Hub API Requests
+        name: sentinel_hub_requests
+        type: quota
+        metric: requests
+        limit: 10000
+        timeFrame: month
+        unit: 1
+        price: free
+        userMultiplied: false
+      - label: Sentinel Hub Processing Units
+        name: sentinel_hub_processing_units
+        type: quota
+        metric: processing_units
+        limit: 10000
+        timeFrame: month
+        unit: 1
+        price: free
+        userMultiplied: false
+      - label: Direct HTTP COG Requests
+        name: direct_http_cog_requests
+        type: quota
+        metric: requests
+        limit: 50000
+        timeFrame: month
+        unit: 1
+        price: free
+        userMultiplied: false
+      - label: openEO Credits
+        name: openeo_credits
+        type: quota
+        metric: credits
+        limit: 10000
+        timeFrame: month
+        unit: 1
+        price: free
+        userMultiplied: false
+      - label: Data Workspace Processed Products
+        name: data_workspace_products
+        type: quota
+        metric: products
+        limit: 25
+        timeFrame: month
+        unit: 1
+        price: free
+        userMultiplied: false
+      - label: S3/OData/STAC Monthly Transfer
+        name: s3_odata_stac_transfer
+        type: quota
+        metric: GB
+        limit: 12288
+        timeFrame: rolling_30d
+        unit: 1
+        price: free
+        userMultiplied: false
+    elements:
+      - name: OData Catalogue API
+      - name: STAC Catalogue API
+      - name: Sentinel Hub API
+      - name: openEO API
+      - name: OGC WMS/WMTS/WFS/WCS
+      - name: S3 Data Access
+      - name: On-Demand Processing API
+      - name: Traceability API
+
+  - id: esa-scientific-services
+    name: ESA Scientific Data Services - Open Access
+    type: free
+    description: >-
+      ESA Gaia TAP, ESASky Legacy TAP, and ESA CCI ESGF are open scientific
+      services available free of charge to the research community. No account
+      registration is required for basic TAP queries. ESA Space Weather HAPI
+      requires registration and M2M credentials but is provided at no cost.
+    entries:
+      - label: Gaia TAP Queries
+        name: gaia_tap_queries
+        type: open
+        metric: requests
+        limit: -1
+        timeFrame: unlimited
+        unit: 1
+        price: free
+        userMultiplied: false
+      - label: ESASky Legacy TAP Queries
+        name: esasky_tap_queries
+        type: open
+        metric: requests
+        limit: -1
+        timeFrame: unlimited
+        unit: 1
+        price: free
+        userMultiplied: false
+      - label: CCI ESGF Data Access
+        name: cci_esgf_access
+        type: open
+        metric: requests
+        limit: -1
+        timeFrame: unlimited
+        unit: 1
+        price: free
+        userMultiplied: false
+      - label: Space Weather HAPI (registered users)
+        name: space_weather_hapi
+        type: open
+        metric: requests
+        limit: -1
+        timeFrame: unlimited
+        unit: 1
+        price: free
+        userMultiplied: false
+    elements:
+      - name: Gaia Archive TAP API
+      - name: ESASky Legacy TAP Service
+      - name: CCI ESGF RESTful API
+      - name: Space Weather HAPI Server
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

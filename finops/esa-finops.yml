@@ -1,0 +1,157 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: European Space Agency (ESA)
+providerId: esa
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Earth Observation
+  - Copernicus
+  - Space Weather
+  - Astronomy
+  - FinOps
+  - FOCUS
+description: >-
+  FOCUS-aligned FinOps for ESA public APIs. The primary metered surface is the
+  Copernicus Data Space Ecosystem (CDSE) free tier, whose cost is zero for registered
+  users up to the published monthly quotas. Beyond free-tier limits, CDSE offers
+  extended quota access through the Copernicus Service framework and the ESA Network
+  of Resources — commercial pricing for these paths is negotiated and not publicly
+  listed. All other ESA scientific APIs (Gaia TAP, ESASky Legacy TAP, Space Weather
+  HAPI, CCI ESGF, Datalabs GraphQL) are provided at no cost to the research community.
+  The principal FinOps risk is unintended quota burn-down of openEO credits,
+  Sentinel Hub processing units, or S3 transfer volume by automated pipelines running
+  without cost guardrails.
+sources:
+  - https://documentation.dataspace.copernicus.eu/Quotas.html
+  - https://dataspace.copernicus.eu/analyse/apis
+  - https://www.finops.org/framework/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: European Space Agency
+serviceCategory: Earth Observation / Space Science
+billingModel:
+  pricingCategory: Free Tier with Extended Quota via Application
+  billingFrequency: Monthly
+  billingCurrency: EUR
+  chargeCategories:
+    - Usage
+    - Credit
+focusColumns:
+  ServiceName: Copernicus Data Space Ecosystem
+  ServiceCategory: Earth Observation
+  ProviderName: European Space Agency (ESA)
+  PublisherName: European Space Agency
+  InvoiceIssuerName: European Commission / ESA
+  BillingCurrency: EUR
+  ChargeCategory: Usage
+meters:
+  - name: sentinel_hub_requests
+    description: >-
+      Count of Sentinel Hub API requests consumed against the 10,000/month free
+      quota. Each request may also consume processing units depending on the
+      operation type and area of interest.
+    unit: requests
+    aggregation: sum
+    dimensions:
+      - user_account
+      - api_endpoint
+      - collection
+
+  - name: sentinel_hub_processing_units
+    description: >-
+      Processing units (PU) consumed by Sentinel Hub operations. PU cost scales
+      with the spatial area, number of bands, and script complexity.
+    unit: processing_units
+    aggregation: sum
+    dimensions:
+      - user_account
+      - collection
+      - resolution
+
+  - name: openeo_credits
+    description: >-
+      openEO platform credits consumed from the 10,000/month free allocation.
+      Credit consumption scales with the computational complexity and data volume
+      of batch processing jobs.
+    unit: credits
+    aggregation: sum
+    dimensions:
+      - user_account
+      - process_graph_id
+      - collection
+
+  - name: s3_transfer_volume
+    description: >-
+      Cumulative data transfer over S3/OData/STAC interfaces measured in a 30-day
+      rolling window against the 12 TB free-tier limit. Exceeding throttles
+      bandwidth to 1 MB/s.
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - user_account
+      - collection
+      - product_type
+
+  - name: direct_http_cog_requests
+    description: >-
+      Count of direct HTTP Cloud-Optimised GeoTIFF (COG) requests against the
+      50,000/month free quota.
+    unit: requests
+    aggregation: sum
+    dimensions:
+      - user_account
+
+  - name: data_workspace_products
+    description: >-
+      Count of offline product orders processed through Data Workspace against
+      the 25/month free limit. This is the only interface for Deferred Available
+      (offline) product retrieval.
+    unit: products
+    aggregation: sum
+    dimensions:
+      - user_account
+      - product_type
+
+principles:
+  - name: Visibility
+    description: >-
+      Monitor Sentinel Hub processing unit consumption and openEO credit burn-rate
+      using the CDSE dashboard. Set alerts when monthly usage exceeds 70% of free
+      quota to avoid unexpected throttling mid-month. Track the 30-day rolling S3
+      transfer window continuously for pipelines downloading large Sentinel products.
+
+  - name: Allocation
+    description: >-
+      Separate CDSE user accounts per team or project to isolate quota pools.
+      Tag all openEO batch jobs and Sentinel Hub requests with project identifiers
+      via request metadata where supported. Maintain distinct credentials for
+      development/test versus production pipelines to prevent test traffic from
+      consuming production quota.
+
+  - name: Optimization
+    description: >-
+      Use STAC or OData catalogue queries before downloading to filter products
+      to the minimum necessary set. Prefer Cloud-Optimised GeoTIFF partial reads
+      over full-product downloads to reduce S3 transfer volume. Cache Sentinel Hub
+      rendered tiles to avoid re-processing identical requests. Schedule large
+      openEO batch jobs early in the month when the credit pool is full. Use
+      Sentinel Hub statistics endpoints in place of full imagery pulls for analysis
+      workflows that only need aggregated metrics.
+
+  - name: Accountability
+    description: >-
+      Assign a data engineering lead as quota owner per CDSE account. Review
+      monthly usage against quota headroom before the reset date. For projects
+      requiring sustained high-volume access, proactively apply for extended quota
+      through the Copernicus Service desk or ESA Network of Resources to avoid
+      mid-project throttling.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

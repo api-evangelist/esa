@@ -1,0 +1,280 @@
+aid: esa
+url: https://raw.githubusercontent.com/api-evangelist/esa/refs/heads/main/apis.yml
+name: European Space Agency (ESA)
+kind: company
+description: >-
+  The European Space Agency (ESA) provides public REST and standards-based APIs spanning
+  Copernicus Earth observation (OData, STAC, Sentinel Hub, openEO, OGC, S3, On-Demand
+  Processing), space weather monitoring (HAPI), astronomical mission archives (Gaia TAP,
+  ESASky Legacy TAP), scientific data labs (Datalabs GraphQL), and climate change
+  initiative datasets (ESGF, THREDDS, OpenSearch). Data includes Sentinel satellite imagery,
+  solar and heliospheric time-series, gamma-ray and stellar catalogues, and multi-mission
+  Earth observation products from European space programs.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Earth Observation
+  - Copernicus
+  - Sentinel
+  - Space Weather
+  - Astronomy
+  - Satellite Data
+  - Climate
+  - Geospatial
+  - STAC
+  - OData
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+apis:
+  - aid: esa:copernicus-odata
+    name: Copernicus Data Space OData Catalogue API
+    description: >-
+      OData-based catalogue interface for searching and downloading Copernicus Earth
+      observation products from the Copernicus Data Space Ecosystem. Supports querying
+      by spatial footprint, acquisition date, product type, and collection name across
+      Sentinel-1, Sentinel-2, Sentinel-3, Sentinel-5P, and other missions. Exposes
+      OData query parameters including $filter, $orderby, $top, $skip, $count, $expand,
+      and $select. A 30-day rolling monthly transfer limit of 12 TB applies under the
+      free tier, with bandwidth per connection capped at 20 MB/s.
+    humanURL: https://documentation.dataspace.copernicus.eu/APIs/OData.html
+    baseURL: https://catalogue.dataspace.copernicus.eu/odata/v1
+    tags:
+      - Earth Observation
+      - Copernicus
+      - Sentinel
+      - OData
+      - Catalogue
+      - Product Download
+    properties:
+      - type: Documentation
+        url: https://documentation.dataspace.copernicus.eu/APIs/OData.html
+
+  - aid: esa:copernicus-stac
+    name: Copernicus Data Space STAC Catalogue API
+    description: >-
+      SpatioTemporal Asset Catalogue (STAC) implementation for the Copernicus Data Space
+      Ecosystem. Provides standardised metadata discovery for Earth Observation data
+      including Sentinel missions. Follows the open STAC specification to enable
+      interoperable access to asset-level metadata with spatial information, temporal
+      coverage, and data specifications. Connects to the same underlying database as
+      the OData interface, ensuring consistency across access methods.
+    humanURL: https://documentation.dataspace.copernicus.eu/APIs/STAC.html
+    baseURL: https://catalogue.dataspace.copernicus.eu/stac
+    tags:
+      - Earth Observation
+      - Copernicus
+      - STAC
+      - Catalogue
+      - Geospatial
+      - Sentinel
+    properties:
+      - type: Documentation
+        url: https://documentation.dataspace.copernicus.eu/APIs/STAC.html
+
+  - aid: esa:copernicus-sentinel-hub
+    name: Copernicus Sentinel Hub API
+    description: >-
+      RESTful API interface providing access to various satellite imagery archives
+      including raw data, rendered images, and statistical analysis without requiring
+      local data downloads. Supports configurable processing expressions, multi-temporal
+      analysis, and cloud-optimised access. Free tier allows 10,000 requests and 10,000
+      processing units per month, with a rate limit of 300 requests/minute and 300
+      processing units/minute.
+    humanURL: https://documentation.dataspace.copernicus.eu/APIs/SentinelHub.html
+    baseURL: https://sh.dataspace.copernicus.eu
+    tags:
+      - Earth Observation
+      - Sentinel
+      - Satellite Imagery
+      - Processing
+      - Copernicus
+    properties:
+      - type: Documentation
+        url: https://documentation.dataspace.copernicus.eu/APIs/SentinelHub.html
+
+  - aid: esa:copernicus-openeo
+    name: Copernicus openEO API
+    description: >-
+      Standardised openEO interface enabling programmatic access and cloud processing of
+      Earth observation datasets without local data management. Supports automatic scaling
+      on cloud infrastructure. The free tier provides 10,000 credits per user per month,
+      a rate limit of 12 requests/minute (1 per 5 seconds), and a maximum of 2
+      concurrent API requests.
+    humanURL: https://dataspace.copernicus.eu/analyse/apis/openeo-api
+    baseURL: https://openeo.dataspace.copernicus.eu
+    tags:
+      - Earth Observation
+      - Copernicus
+      - openEO
+      - Processing
+      - Cloud
+    properties:
+      - type: Documentation
+        url: https://dataspace.copernicus.eu/analyse/apis/openeo-api
+
+  - aid: esa:copernicus-ogc
+    name: Copernicus OGC API (WMS/WMTS/WFS/WCS)
+    description: >-
+      OGC-compliant web services providing seamless satellite data access through
+      standard GIS applications. Exposes WMS (Web Map Service), WMTS (Web Map Tile
+      Service), WFS (Web Feature Service), and WCS (Web Coverage Service) endpoints for
+      Copernicus mission data. Suitable for direct integration into GIS tools without
+      downloading or local data processing.
+    humanURL: https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/OGC.html
+    baseURL: https://services.sentinel-hub.com/ogc
+    tags:
+      - Earth Observation
+      - OGC
+      - WMS
+      - WFS
+      - WCS
+      - GIS
+      - Copernicus
+    properties:
+      - type: Documentation
+        url: https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/OGC.html
+
+  - aid: esa:copernicus-on-demand-processing
+    name: Copernicus On-Demand Processing (ODP) API
+    description: >-
+      Serverless computation service for generating higher-level products from archived
+      lower-level Copernicus data using ESA processors. Supports single-item and batch
+      processing workflows including CARD-BS (Backscatter) and CARD-COH6/12 (Coherence)
+      products from Sentinel-1 SAR data.
+    humanURL: https://documentation.dataspace.copernicus.eu/APIs/On-Demand%20Production%20API.html
+    baseURL: https://odp.dataspace.copernicus.eu
+    tags:
+      - Earth Observation
+      - Copernicus
+      - Sentinel-1
+      - SAR
+      - Processing
+      - On-Demand
+    properties:
+      - type: Documentation
+        url: https://documentation.dataspace.copernicus.eu/APIs/On-Demand%20Production%20API.html
+
+  - aid: esa:space-weather-hapi
+    name: ESA Space Weather HAPI Server
+    description: >-
+      Heliophysics Application Programmer's Interface (HAPI) server providing access to
+      ESA Space Weather Service Network data. Implements the COSPAR-recommended HAPI
+      standard for streaming heliophysics time-series data. Endpoints include catalog
+      (dataset listing), info (parameter definitions), data (time-range streaming),
+      capabilities, and about. Authentication requires an ESA SSO M2M client-id/secret
+      pair exchanged for a short-lived Bearer token (expires 300 seconds) via
+      https://sso.s2p.esa.int/realms/swe/protocol/openid-connect/token.
+    humanURL: https://swe.ssa.esa.int/swe-hapi-server
+    baseURL: https://swe.ssa.esa.int/hapi
+    tags:
+      - Space Weather
+      - Heliophysics
+      - HAPI
+      - Solar
+      - Time Series
+    properties:
+      - type: Documentation
+        url: https://swe.ssa.esa.int/swe-hapi-server
+
+  - aid: esa:gaia-tap
+    name: ESA Gaia Archive TAP API
+    description: >-
+      Table Access Protocol (TAP) service for the ESA Gaia stellar catalogue, the most
+      precise astrometric survey of the Milky Way. Enables ADQL (Astronomical Data Query
+      Language) queries against Gaia Data Releases covering positions, parallaxes, proper
+      motions, photometry, and radial velocities for over a billion stars. Accessible
+      programmatically via the astroquery Python library.
+    humanURL: https://www.cosmos.esa.int/web/gaia-users/archive/programmatic-access
+    baseURL: https://gea.esac.esa.int/tap-server/tap
+    tags:
+      - Astronomy
+      - Gaia
+      - TAP
+      - Stellar Catalogue
+      - Astrometry
+    properties:
+      - type: Documentation
+        url: https://www.cosmos.esa.int/web/gaia-users/archive/programmatic-access
+
+  - aid: esa:esasky-legacy-tap
+    name: ESASky Legacy TAP Service
+    description: >-
+      IVOA Table Access Protocol (TAP) service providing access to ESA legacy mission
+      archives including Hipparcos (~118,000 stars with milliarcsecond accuracy, 42 data
+      products across 59 tables), Cos-B gamma-ray observations (252 high-level products
+      across six energy ranges), and CoRoT exoplanet/asteroseismology data (177,382
+      faint-star observations and 171 bright-star light curves). Supports ADQL queries
+      and DataLink services.
+    humanURL: https://www.cosmos.esa.int/web/esdc/legacy-tap-esa
+    baseURL: http://esaskylegacy.esac.esa.int/esasky-legacy-sl-tap/tap
+    tags:
+      - Astronomy
+      - TAP
+      - Hipparcos
+      - CoRoT
+      - Gaia
+      - Legacy Archives
+    properties:
+      - type: Documentation
+        url: https://www.cosmos.esa.int/web/esdc/legacy-tap-esa
+
+  - aid: esa:datalabs-graphql
+    name: ESA Datalabs GraphQL API
+    description: >-
+      GraphQL API for managing ESA Datalabs computational environments, data pipelines,
+      data volumes, and user access controls. Provides 50+ query operations (datalab
+      management, pipeline runs, user/role management, data centres) and 80+ mutations
+      (build/create/destroy datalabs, access grants, pipeline execution, workspace
+      management), plus 4 subscription endpoints for real-time monitoring of build
+      progress and pipeline runs. Requires an ESA Cosmos CAS LDAP account with a
+      Bearer token.
+    humanURL: https://datalabs.esa.int/api-docs/
+    baseURL: https://datalabs.esa.int/graphql
+    tags:
+      - GraphQL
+      - Data Labs
+      - Pipelines
+      - Scientific Computing
+      - ESA
+    properties:
+      - type: Documentation
+        url: https://datalabs.esa.int/api-docs/
+
+  - aid: esa:cci-esgf
+    name: ESA CCI ESGF RESTful API
+    description: >-
+      Earth System Grid Federation (ESGF) RESTful API providing access to ESA Climate
+      Change Initiative (CCI) observational products aligned with CMIP climate model
+      data through the Obs4MIPs framework. Enables search and retrieval of long-term
+      satellite-derived Essential Climate Variables (ECVs) spanning sea level, sea ice,
+      soil moisture, land cover, and more.
+    humanURL: https://climate.esa.int/en/data/apis/
+    baseURL: https://esgf.ceda.ac.uk/esg-search/search
+    tags:
+      - Climate
+      - CCI
+      - ESGF
+      - Essential Climate Variables
+      - Earth Observation
+    properties:
+      - type: Documentation
+        url: https://climate.esa.int/en/data/apis/
+
+common:
+  - type: Website
+    url: https://www.esa.int/
+  - type: Documentation
+    url: https://documentation.dataspace.copernicus.eu/
+  - type: GitHub
+    url: https://github.com/esa
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/european-space-agency
+  - type: Plans
+    url: plans/esa-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/esa-rate-limits.yml
+  - type: FinOps
+    url: finops/esa-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

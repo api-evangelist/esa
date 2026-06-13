@@ -1,0 +1,153 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: European Space Agency (ESA)
+providerId: esa
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Earth Observation
+  - Copernicus
+  - Space Weather
+  - Rate Limiting
+  - Throttling
+description: >-
+  Rate limits for ESA public APIs are primarily defined by the Copernicus Data Space
+  Ecosystem (CDSE) free-tier quotas. Sentinel Hub allows 300 requests/minute and 300
+  processing units/minute. openEO is limited to 12 requests/minute (1 per 5 seconds)
+  with a maximum of 2 concurrent requests. S3 supports 4 concurrent connections at
+  20 MB/s each. Data Workspace allows 2 concurrent processing orders. ESA Gaia TAP,
+  ESASky Legacy TAP, and CCI ESGF do not publish explicit numeric rate limits.
+  Space Weather HAPI access tokens expire after 300 seconds.
+sources:
+  - https://documentation.dataspace.copernicus.eu/Quotas.html
+  - https://swe.ssa.esa.int/swe-hapi-server
+responseCodes:
+  throttled: 429
+  unauthorized: 401
+  forbidden: 403
+  serverError: 500
+limits:
+  - name: Sentinel Hub API Requests per Minute
+    scope: user
+    api: copernicus-sentinel-hub
+    metric: requests
+    limit: 300
+    timeFrame: minute
+    notes: >-
+      300 requests/minute and 300 processing units/minute for the Sentinel Hub API.
+      Exceeding triggers HTTP 429.
+
+  - name: Sentinel Hub Processing Units per Minute
+    scope: user
+    api: copernicus-sentinel-hub
+    metric: processing_units
+    limit: 300
+    timeFrame: minute
+    notes: >-
+      Parallel limit to the request rate; each request may consume multiple
+      processing units depending on area and complexity.
+
+  - name: openEO Requests per Minute
+    scope: user
+    api: copernicus-openeo
+    metric: requests
+    limit: 12
+    timeFrame: minute
+    notes: >-
+      Approximately 1 request per 5 seconds. Intended to manage cloud
+      processing resource fairness across free-tier users.
+
+  - name: openEO Concurrent Requests
+    scope: user
+    api: copernicus-openeo
+    metric: concurrent_requests
+    limit: 2
+    timeFrame: concurrent
+    notes: >-
+      Maximum 2 simultaneous openEO batch jobs or processing requests per user.
+
+  - name: S3 Concurrent Connections
+    scope: user
+    api: copernicus-s3
+    metric: concurrent_connections
+    limit: 4
+    timeFrame: concurrent
+    notes: >-
+      Up to 4 concurrent S3 connections, each at 20 MB/s bandwidth. Exceeding
+      monthly 12 TB transfer quota drops to 1 connection at 1 MB/s.
+
+  - name: S3 Bandwidth per Connection
+    scope: connection
+    api: copernicus-s3
+    metric: bandwidth
+    limit: 20
+    timeFrame: continuous
+    unit: MB/s
+    notes: >-
+      Each S3 connection is throttled to 20 MB/s under normal quota conditions.
+
+  - name: Active Sessions
+    scope: account
+    api: copernicus-all
+    metric: active_sessions
+    limit: 100
+    timeFrame: concurrent
+    notes: >-
+      Maximum 100 active sessions per account across all Copernicus Data Space
+      Ecosystem API endpoints.
+
+  - name: Data Workspace Concurrent Processing Orders
+    scope: user
+    api: copernicus-data-workspace
+    metric: concurrent_orders
+    limit: 2
+    timeFrame: concurrent
+    notes: >-
+      Maximum 2 simultaneous Data Workspace offline product orders.
+
+  - name: Space Weather HAPI Token Validity
+    scope: token
+    api: space-weather-hapi
+    metric: token_lifetime
+    limit: 300
+    timeFrame: second
+    unit: seconds
+    notes: >-
+      M2M Bearer tokens expire after 300 seconds. Tokens must be refreshed
+      before expiry using the SSO endpoint at
+      https://sso.s2p.esa.int/realms/swe/protocol/openid-connect/token.
+
+policies:
+  - name: Monthly Quota Reset
+    description: >-
+      All Copernicus Data Space Ecosystem free-tier quotas (Sentinel Hub requests,
+      openEO credits, Data Workspace products, Direct HTTP COG requests) reset on
+      the first calendar day of each month.
+
+  - name: Transfer Quota Throttling
+    description: >-
+      When a user exceeds the 12 TB 30-day rolling S3/OData/STAC transfer limit,
+      bandwidth is reduced to 1 MB/s with 1 concurrent connection. Full bandwidth
+      is restored when the rolling window drops below the quota.
+
+  - name: Copernicus Authentication Token Lifetime
+    description: >-
+      Access tokens for authenticated Copernicus APIs are valid for 10 minutes and
+      can be refreshed within a 60-minute refresh window using the OpenID Connect
+      token endpoint.
+
+  - name: HAPI Token Refresh
+    description: >-
+      ESA Space Weather HAPI M2M tokens must be refreshed before the 300-second
+      expiry. Implement proactive token renewal in programmatic clients to avoid
+      failed requests.
+
+  - name: Exponential Backoff on 429
+    description: >-
+      All ESA/Copernicus APIs return HTTP 429 on rate limit violation. Clients
+      should implement exponential backoff with jitter before retrying.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
