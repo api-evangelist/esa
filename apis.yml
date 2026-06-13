@@ -59,7 +59,7 @@ apis:
       coverage, and data specifications. Connects to the same underlying database as
       the OData interface, ensuring consistency across access methods.
     humanURL: https://documentation.dataspace.copernicus.eu/APIs/STAC.html
-    baseURL: https://catalogue.dataspace.copernicus.eu/stac
+    baseURL: https://stac.dataspace.copernicus.eu/v1
     tags:
       - Earth Observation
       - Copernicus
@@ -70,6 +70,8 @@ apis:
     properties:
       - type: Documentation
         url: https://documentation.dataspace.copernicus.eu/APIs/STAC.html
+      - type: OpenAPI
+        url: openapi/esa-copernicus-stac-openapi.json
 
   - aid: esa:copernicus-sentinel-hub
     name: Copernicus Sentinel Hub API
@@ -275,6 +277,8 @@ common:
     url: rate-limits/esa-rate-limits.yml
   - type: FinOps
     url: finops/esa-finops.yml
+  - type: JSONLd
+    url: json-ld/esa-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

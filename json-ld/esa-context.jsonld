@@ -1,0 +1,125 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "esa": "https://www.esa.int/vocab#",
+    "copernicus": "https://dataspace.copernicus.eu/vocab#",
+    "stac": "https://stacspec.org/vocab#",
+    "odata": "https://docs.oasis-open.org/odata/odata/v4.0/vocab#",
+    "hapi": "http://hapi-server.org/vocab#",
+    "tap": "http://www.ivoa.net/xml/TAPRegExt/v1.0#",
+    "openeo": "https://openeo.org/vocab#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "identifier": "schema:identifier",
+    "provider": "schema:provider",
+    "license": "schema:license",
+    "version": "schema:version",
+    "keywords": "schema:keywords",
+    "spatialCoverage": "schema:spatialCoverage",
+    "temporalCoverage": "schema:temporalCoverage",
+    "distribution": "schema:distribution",
+    "contentUrl": "schema:contentUrl",
+    "encodingFormat": "schema:encodingFormat",
+    "APIEndpoint": "schema:EntryPoint",
+    "EarthObservation": "esa:EarthObservation",
+    "SpaceWeather": "esa:SpaceWeather",
+    "AstronomicalCatalogue": "esa:AstronomicalCatalogue",
+    "Sentinel": "copernicus:Sentinel",
+    "Collection": "stac:Collection",
+    "Item": "stac:Item",
+    "Asset": "stac:Asset",
+    "SpatioTemporalAssetCatalog": "stac:Catalog"
+  },
+  "@type": "schema:Organization",
+  "@id": "https://www.esa.int/",
+  "name": "European Space Agency (ESA)",
+  "description": "ESA provides public REST and standards-based APIs spanning Copernicus Earth observation, space weather monitoring, astronomical mission archives, scientific data labs, and climate change initiative datasets.",
+  "url": "https://www.esa.int/",
+  "sameAs": [
+    "https://github.com/ESA-EarthObservation",
+    "https://dataspace.copernicus.eu/",
+    "https://www.linkedin.com/company/european-space-agency"
+  ],
+  "keywords": [
+    "Earth Observation",
+    "Copernicus",
+    "Sentinel",
+    "Space Weather",
+    "Astronomy",
+    "Satellite Data",
+    "Climate",
+    "Geospatial",
+    "STAC",
+    "OData"
+  ],
+  "hasOfferCatalog": {
+    "@type": "schema:OfferCatalog",
+    "name": "ESA API Catalog",
+    "itemListElement": [
+      {
+        "@type": "schema:EntryPoint",
+        "@id": "https://catalogue.dataspace.copernicus.eu/odata/v1",
+        "name": "Copernicus Data Space OData Catalogue API",
+        "description": "OData-based catalogue interface for searching and downloading Copernicus Earth observation products.",
+        "url": "https://documentation.dataspace.copernicus.eu/APIs/OData.html",
+        "encodingFormat": "application/json",
+        "keywords": ["Earth Observation", "OData", "Copernicus", "Sentinel"]
+      },
+      {
+        "@type": "schema:EntryPoint",
+        "@id": "https://stac.dataspace.copernicus.eu/v1",
+        "name": "Copernicus Data Space STAC Catalogue API",
+        "description": "SpatioTemporal Asset Catalogue (STAC) implementation for the Copernicus Data Space Ecosystem.",
+        "url": "https://documentation.dataspace.copernicus.eu/APIs/STAC.html",
+        "encodingFormat": "application/json",
+        "keywords": ["STAC", "Earth Observation", "Copernicus", "Geospatial"]
+      },
+      {
+        "@type": "schema:EntryPoint",
+        "@id": "https://sh.dataspace.copernicus.eu",
+        "name": "Copernicus Sentinel Hub API",
+        "description": "RESTful API for satellite imagery access, processing, and statistical analysis.",
+        "url": "https://documentation.dataspace.copernicus.eu/APIs/SentinelHub.html",
+        "encodingFormat": "application/json",
+        "keywords": ["Sentinel", "Satellite Imagery", "Processing", "Copernicus"]
+      },
+      {
+        "@type": "schema:EntryPoint",
+        "@id": "https://openeo.dataspace.copernicus.eu",
+        "name": "Copernicus openEO API",
+        "description": "Standardised openEO interface enabling programmatic access and cloud processing of Earth observation datasets.",
+        "url": "https://dataspace.copernicus.eu/analyse/apis/openeo-api",
+        "encodingFormat": "application/json",
+        "keywords": ["openEO", "Earth Observation", "Processing", "Cloud"]
+      },
+      {
+        "@type": "schema:EntryPoint",
+        "@id": "https://swe.ssa.esa.int/hapi",
+        "name": "ESA Space Weather HAPI Server",
+        "description": "HAPI server providing access to ESA Space Weather Service Network data.",
+        "url": "https://swe.ssa.esa.int/swe-hapi-server",
+        "encodingFormat": "application/json",
+        "keywords": ["Space Weather", "HAPI", "Heliophysics", "Solar"]
+      },
+      {
+        "@type": "schema:EntryPoint",
+        "@id": "https://gea.esac.esa.int/tap-server/tap",
+        "name": "ESA Gaia Archive TAP API",
+        "description": "TAP service for the ESA Gaia stellar catalogue with ADQL query support.",
+        "url": "https://www.cosmos.esa.int/web/gaia-users/archive/programmatic-access",
+        "encodingFormat": "application/json",
+        "keywords": ["Astronomy", "Gaia", "TAP", "Stellar Catalogue"]
+      },
+      {
+        "@type": "schema:EntryPoint",
+        "@id": "https://datalabs.esa.int/graphql",
+        "name": "ESA Datalabs GraphQL API",
+        "description": "GraphQL API for managing ESA Datalabs computational environments and data pipelines.",
+        "url": "https://datalabs.esa.int/api-docs/",
+        "encodingFormat": "application/json",
+        "keywords": ["GraphQL", "Data Labs", "Pipelines", "Scientific Computing"]
+      }
+    ]
+  }
+}
