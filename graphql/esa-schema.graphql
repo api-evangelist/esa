@@ -1,0 +1,1267 @@
+"""
+ESA Datalabs GraphQL Schema
+Source: https://datalabs.esa.int/api-docs/ (Spectaql-rendered live documentation)
+Endpoint: https://datalabs.esa.int/graphql
+
+This schema is reconstructed from the published ESA Datalabs GraphQL API reference.
+Types covering ESA astronomical and Earth observation data models (Mission, Spacecraft,
+Observation, etc.) are conceptual SDL derived from ESA TAP/ADQL table schemas
+(Gaia DR3, Hipparcos, Copernicus OData, ESASky Legacy TAP).
+"""
+
+scalar DateTime
+scalar ObjectID
+
+# ─────────────────────────────────────────────
+# Enumerations
+# ─────────────────────────────────────────────
+
+enum BuildStatus {
+  PENDING
+  BUILDING
+  SUCCESS
+  FAILED
+  CANCELLED
+}
+
+enum RunStatus {
+  PENDING
+  RUNNING
+  SUCCESS
+  FAILED
+  STOPPED
+  CANCELLED
+}
+
+enum DatalabStatus {
+  STOPPED
+  STARTING
+  RUNNING
+  STOPPING
+  ERROR
+  BUILDING
+}
+
+enum DatalabClass {
+  NOTEBOOK
+  PIPELINE
+  BATCH
+}
+
+enum PipelineType {
+  USER
+  SYSTEM
+}
+
+enum RunOrder {
+  ASC
+  DESC
+}
+
+enum LogLevel {
+  DEBUG
+  INFO
+  WARNING
+  ERROR
+  CRITICAL
+}
+
+enum ResourceState {
+  AVAILABLE
+  UNAVAILABLE
+  DEGRADED
+}
+
+# ─────────────────────────────────────────────
+# Core Datalabs Types (native GraphQL)
+# ─────────────────────────────────────────────
+
+"""A Datalab is a managed computational environment (Jupyter, pipeline runner, etc.)."""
+type Datalab {
+  id: ID!
+  name: String!
+  description: String
+  status: DatalabStatus!
+  datalabClass: DatalabClass
+  dockerImage: DockerImage
+  dataCentre: DataCentre
+  dataVolumes: [DataVolume]
+  metadata: [MetadataEntry]
+  builds: [DatalabBuild]
+  executionEngine: ExecutionEngine
+  runtimeConfiguration: RuntimeConfiguration
+  createdAt: DateTime
+  updatedAt: DateTime
+  owner: User
+  accessList: [User]
+  workspace: Workspace
+  schedule: Schedule
+  packages: [DatalabPackage]
+  logs: [DatalabLog]
+}
+
+"""Metadata about a Datalabs build (Docker image construction)."""
+type DatalabBuild {
+  id: ID!
+  status: BuildStatus!
+  progress: BuildProgress
+  logs: [BuildLog]
+  bookmarks: BuildBookmarks
+  createdAt: DateTime
+  completedAt: DateTime
+  datalab: Datalab
+}
+
+type BuildProgress {
+  percentage: Int
+  currentStep: String
+  totalSteps: Int
+}
+
+type BuildLog {
+  timestamp: DateTime
+  level: LogLevel
+  message: String!
+}
+
+type BuildBookmarks {
+  start: String
+  end: String
+}
+
+type DataCentre {
+  id: ID!
+  name: String!
+  location: String
+  status: ResourceState
+  clusters: [Cluster]
+}
+
+type Cluster {
+  id: ID!
+  name: String!
+  dataCentre: DataCentre
+  status: ResourceState
+}
+
+type DataVolume {
+  id: ID!
+  name: String!
+  size: Int
+  mountPath: String
+  dataCentre: DataCentre
+  readOnly: Boolean
+}
+
+type DockerImage {
+  id: ID!
+  name: String!
+  tag: String
+  registry: DockerRegistry
+  pullable: Boolean
+  size: Int
+  createdAt: DateTime
+}
+
+type DockerRegistry {
+  id: ID!
+  url: String!
+  name: String
+  images: [DockerImage]
+}
+
+type ExecutionEngine {
+  id: ID!
+  name: String!
+  version: String
+  resources: [Resource]
+}
+
+type Resource {
+  id: ID!
+  name: String!
+  value: String
+  unit: String
+}
+
+type RuntimeConfiguration {
+  cpu: String
+  memory: String
+  gpu: String
+  timeout: Int
+  envVars: [EnvVarInfo]
+}
+
+type EnvVarInfo {
+  key: String!
+  value: String
+  secret: Boolean
+}
+
+type Schedule {
+  enabled: Boolean!
+  cron: String
+  timezone: String
+  nextRun: DateTime
+  lastRun: DateTime
+}
+
+type DatalabPackage {
+  name: String!
+  version: String
+  channel: String
+}
+
+type DatalabLog {
+  timestamp: DateTime
+  level: LogLevel
+  message: String!
+  source: String
+}
+
+type DatalabMetadata {
+  key: String!
+  value: String
+  dataType: String
+}
+
+type MetadataEntry {
+  key: String!
+  value: String
+  definition: MetadataEntryDefinition
+}
+
+type MetadataEntryDefinition {
+  key: String!
+  label: String
+  description: String
+  required: Boolean
+  dataType: String
+}
+
+type DatalabSecretCheck {
+  secretExists: Boolean!
+  secretName: String
+}
+
+type DeploymentError {
+  message: String!
+  code: Code
+  timestamp: DateTime
+}
+
+type Code {
+  value: Int
+  description: String
+}
+
+"""A pipeline is a reusable scientific computation workflow."""
+type UserPipeline {
+  id: ID!
+  name: String!
+  description: String
+  version: String
+  code: UserPipelineCode
+  runs: [PipelineRun]
+  parameters: [Parameter]
+  inputs: [Input]
+  outputs: [Output]
+  createdAt: DateTime
+  updatedAt: DateTime
+  owner: User
+}
+
+type SystemPipeline {
+  id: ID!
+  name: String!
+  description: String
+  versions: [SystemPipelineVersion]
+  code: SystemPipelineCode
+  parameters: [Parameter]
+  inputs: [Input]
+  outputs: [Output]
+  createdAt: DateTime
+}
+
+type SystemPipelineVersion {
+  version: String!
+  changelog: String
+  createdAt: DateTime
+}
+
+type SystemPipelineCode {
+  content: String
+  language: String
+}
+
+type UserPipelineCode {
+  content: String
+  language: String
+  repository: String
+  branch: String
+}
+
+type PipelineRun {
+  id: ID!
+  status: RunStatus!
+  pipeline: UserPipeline
+  systemPipeline: SystemPipeline
+  startedAt: DateTime
+  completedAt: DateTime
+  parameters: [Parameter]
+  logs: [PipelineLog]
+  steps: [StepRun]
+  result: PipelineRunResult
+  triggerData: TriggerData
+}
+
+type PipelineRunResult {
+  success: Boolean!
+  outputs: [Output]
+  errorMessage: String
+}
+
+type TriggerData {
+  type: String
+  payload: String
+  triggeredBy: String
+  timestamp: DateTime
+}
+
+type StepRun {
+  id: ID!
+  name: String!
+  status: RunStatus!
+  startedAt: DateTime
+  completedAt: DateTime
+  logs: [StepLog]
+}
+
+type StepLog {
+  timestamp: DateTime
+  level: LogLevel
+  message: String!
+}
+
+type PipelineLog {
+  timestamp: DateTime
+  level: LogLevel
+  message: String!
+  stepId: String
+}
+
+type DLDPipelineLog {
+  timestamp: DateTime
+  message: String!
+  source: String
+}
+
+type Parameter {
+  name: String!
+  value: String
+  dataType: String
+  required: Boolean
+  description: String
+}
+
+type Input {
+  name: String!
+  dataType: String
+  description: String
+  required: Boolean
+}
+
+type Output {
+  name: String!
+  dataType: String
+  description: String
+}
+
+"""A workspace groups related Datalabs and resources for a team or project."""
+type Workspace {
+  id: ID!
+  name: String!
+  description: String
+  datalabs: [Datalab]
+  members: [User]
+  createdAt: DateTime
+  updatedAt: DateTime
+  owner: User
+}
+
+"""A user account in the ESA Cosmos CAS / LDAP directory."""
+type User {
+  id: ID!
+  username: String!
+  email: String
+  firstName: String
+  lastName: String
+  roles: [Role]
+  permissions: [Permission]
+  quota: Quota
+  datalabs: [Datalab]
+  workspaces: [Workspace]
+}
+
+type UserDetails {
+  id: ID!
+  username: String!
+  email: String
+  fullName: String
+  institution: String
+}
+
+type UserComment {
+  id: ID!
+  author: User
+  content: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Role {
+  id: ID!
+  name: String!
+  description: String
+  permissions: [Permission]
+  isOperatorDefined: Boolean
+}
+
+type Permission {
+  id: ID!
+  name: String!
+  description: String
+  resource: String
+  action: String
+}
+
+type Quota {
+  maxDatalabs: Int
+  maxDataVolumes: Int
+  maxPipelineRuns: Int
+  storageGB: Int
+  cpuCores: Int
+  memoryGB: Int
+  usedDatalabs: Int
+  usedDataVolumes: Int
+}
+
+type Bot {
+  id: ID!
+  name: String!
+  description: String
+  token: String
+  owner: User
+  createdAt: DateTime
+}
+
+type AuthenticationState {
+  authenticated: Boolean!
+  username: String
+  roles: [String]
+  expiresAt: DateTime
+}
+
+type License {
+  id: ID!
+  name: String!
+  spdxId: String
+  url: String
+}
+
+type Announcement {
+  id: ID!
+  title: String!
+  content: String!
+  severity: String
+  active: Boolean
+  createdAt: DateTime
+  expiresAt: DateTime
+}
+
+type Notification {
+  id: ID!
+  type: String!
+  message: String!
+  read: Boolean
+  createdAt: DateTime
+}
+
+type HelpPageIds {
+  ids: [String]
+}
+
+type Log {
+  timestamp: DateTime
+  level: LogLevel
+  message: String!
+  source: String
+  requestId: String
+}
+
+type LogParams {
+  level: LogLevel
+  source: String
+  limit: Int
+}
+
+type Pagination {
+  page: Int
+  pageSize: Int
+  totalItems: Int
+  totalPages: Int
+}
+
+type ProcessingResult {
+  success: Boolean!
+  message: String
+  data: String
+}
+
+type MonitoringEvent {
+  eventType: String!
+  resourceId: String
+  message: String!
+  timestamp: DateTime!
+}
+
+type ActionResult {
+  success: Boolean!
+  message: String
+  resourceId: String
+}
+
+type Node {
+  id: ID!
+  type: String
+  status: ResourceState
+}
+
+type Type {
+  name: String!
+  description: String
+}
+
+# ─────────────────────────────────────────────
+# Astronomical & Earth Observation Types
+# (Conceptual SDL from ESA TAP/ADQL schemas)
+# Source: Gaia DR3, Hipparcos, ESASky Legacy TAP,
+#         Copernicus OData/STAC catalogues
+# ─────────────────────────────────────────────
+
+"""An ESA space mission (e.g. Gaia, XMM-Newton, Herschel, Sentinel series)."""
+type Mission {
+  id: ID!
+  name: String!
+  shortName: String
+  description: String
+  launchDate: String
+  endDate: String
+  status: String
+  agency: String
+  spacecraft: [Spacecraft]
+  instruments: [Instrument]
+  dataReleases: [DataRelease]
+  publications: [Publication]
+}
+
+"""A spacecraft (satellite) carrying science instruments."""
+type Spacecraft {
+  id: ID!
+  name: String!
+  mission: Mission
+  launchDate: String
+  orbitType: String
+  orbit: Orbit
+  instruments: [Instrument]
+  status: String
+}
+
+"""A science instrument aboard a spacecraft."""
+type Instrument {
+  id: ID!
+  name: String!
+  abbreviation: String
+  spacecraft: Spacecraft
+  wavelengths: [Wavelength]
+  description: String
+  capabilities: [String]
+}
+
+"""An astronomical observation record."""
+type Observation {
+  id: ID!
+  observationId: String!
+  target: Target
+  instrument: Instrument
+  spacecraft: Spacecraft
+  mission: Mission
+  startTime: DateTime
+  endTime: DateTime
+  exposure: Exposure
+  coordinateSystem: CoordinateSystem
+  wcs: WCS
+  program: Program
+  dataProducts: [DataProduct]
+  publicationDate: DateTime
+  processingLevel: String
+}
+
+"""An astronomical target (star, galaxy, solar system body, etc.)."""
+type Target {
+  id: ID!
+  name: String!
+  alternateNames: [String]
+  targetType: String
+  coordinates: Coordinates
+  redshift: Float
+  distance: Float
+  distanceUnit: String
+  star: Star
+  galaxy: Galaxy
+  solarSystemObject: SolarSystem
+  planet: Planet
+}
+
+"""A data product produced from an observation."""
+type DataProduct {
+  id: ID!
+  productId: String!
+  observation: Observation
+  productType: String
+  format: String
+  size: Float
+  sizeUnit: String
+  url: String
+  accessUrl: String
+  processingLevel: String
+  images: [Image]
+  spectra: [Spectrum]
+  catalogues: [Catalogue]
+  createdAt: DateTime
+}
+
+"""A science image (FITS, JPEG2000, PNG)."""
+type Image {
+  id: ID!
+  dataProduct: DataProduct
+  imageType: String
+  width: Int
+  height: Int
+  pixelScale: Float
+  pixelScaleUnit: String
+  filter: String
+  wavelength: Wavelength
+  wcs: WCS
+  exposure: Exposure
+  url: String
+  thumbnailUrl: String
+}
+
+"""A spectrum (wavelength vs flux)."""
+type Spectrum {
+  id: ID!
+  dataProduct: DataProduct
+  spectrumType: String
+  wavelengthMin: Float
+  wavelengthMax: Float
+  wavelengthUnit: String
+  resolution: Float
+  exposure: Exposure
+  url: String
+}
+
+"""A science catalogue (source lists, stellar tables, etc.)."""
+type Catalogue {
+  id: ID!
+  name: String!
+  description: String
+  mission: Mission
+  sourceCount: Int
+  columns: [CatalogueColumn]
+  accessUrl: String
+  tapTable: String
+  releaseDate: DateTime
+  publication: Publication
+}
+
+type CatalogueColumn {
+  name: String!
+  ucd: String
+  unit: String
+  description: String
+  dataType: String
+  indexed: Boolean
+}
+
+"""A stellar source (from Gaia DR3, Hipparcos, etc.)."""
+type Star {
+  id: ID!
+  sourceId: String!
+  designation: String
+  ra: Float
+  dec: Float
+  raError: Float
+  decError: Float
+  parallax: Float
+  parallaxError: Float
+  pmRa: Float
+  pmDec: Float
+  radialVelocity: Float
+  gMag: Float
+  bpMag: Float
+  rpMag: Float
+  spectralType: String
+  effectiveTemperature: Float
+  luminosity: Float
+  mass: Float
+  catalogues: [Catalogue]
+}
+
+"""A galaxy or extragalactic source."""
+type Galaxy {
+  id: ID!
+  name: String!
+  ra: Float
+  dec: Float
+  redshift: Float
+  morphologyType: String
+  diameter: Float
+  diameterUnit: String
+  catalogues: [Catalogue]
+}
+
+"""A solar system body (planet, moon, asteroid, comet)."""
+type SolarSystem {
+  id: ID!
+  name: String!
+  bodyType: String
+  discoveryDate: String
+  discoverer: String
+  orbitParameters: OrbitalParameters
+  planet: Planet
+}
+
+"""A planet in the solar system."""
+type Planet {
+  id: ID!
+  name: String!
+  semiMajorAxis: Float
+  eccentricity: Float
+  inclination: Float
+  mass: Float
+  radius: Float
+  orbitalPeriod: Float
+  moons: [SolarSystem]
+}
+
+"""An orbital description for a spacecraft or solar system body."""
+type Orbit {
+  id: ID!
+  semiMajorAxis: Float
+  eccentricity: Float
+  inclination: Float
+  raan: Float
+  argumentOfPerigee: Float
+  trueAnomaly: Float
+  epoch: DateTime
+  period: Float
+  apoapsis: Float
+  periapsis: Float
+}
+
+type OrbitalParameters {
+  semiMajorAxis: Float
+  eccentricity: Float
+  inclination: Float
+  longitudeOfAscendingNode: Float
+  argumentOfPerihelion: Float
+  meanAnomaly: Float
+  epoch: DateTime
+}
+
+"""A coordinate system used for observations or positions."""
+type CoordinateSystem {
+  name: String!
+  epoch: String
+  equinox: String
+  frame: String
+  projection: String
+}
+
+"""World Coordinate System parameters for an image or data product."""
+type WCS {
+  crpix1: Float
+  crpix2: Float
+  crval1: Float
+  crval2: Float
+  cdelt1: Float
+  cdelt2: Float
+  ctype1: String
+  ctype2: String
+  naxis1: Int
+  naxis2: Int
+  equinox: Float
+}
+
+"""Coordinate pair (RA/Dec or longitude/latitude)."""
+type Coordinates {
+  ra: Float
+  dec: Float
+  galacticLon: Float
+  galacticLat: Float
+  eclipticLon: Float
+  eclipticLat: Float
+  coordinateSystem: CoordinateSystem
+}
+
+"""A time range for an observation or data query."""
+type TimeRange {
+  startTime: DateTime!
+  endTime: DateTime!
+  duration: Float
+  durationUnit: String
+}
+
+"""A wavelength band or value."""
+type Wavelength {
+  name: String
+  centralWavelength: Float
+  wavelengthMin: Float
+  wavelengthMax: Float
+  unit: String
+  band: String
+  regime: String
+}
+
+"""Exposure parameters for an observation."""
+type Exposure {
+  duration: Float!
+  durationUnit: String
+  startTime: DateTime
+  endTime: DateTime
+  readoutMode: String
+  gainMode: String
+}
+
+"""A science programme (e.g. a Gaia observation programme or Copernicus mission phase)."""
+type Program {
+  id: ID!
+  name: String!
+  description: String
+  mission: Mission
+  proposals: [Proposal]
+  observations: [Observation]
+  startDate: DateTime
+  endDate: DateTime
+}
+
+"""An observing proposal submitted by a science team."""
+type Proposal {
+  id: ID!
+  proposalId: String!
+  title: String!
+  principalInvestigator: String
+  abstract: String
+  program: Program
+  observations: [Observation]
+  status: String
+  submittedAt: DateTime
+  allocatedTime: Float
+  allocatedTimeUnit: String
+}
+
+"""A scientific publication referencing ESA mission data."""
+type Publication {
+  id: ID!
+  title: String!
+  authors: [String]
+  journal: String
+  year: Int
+  doi: String
+  arxivId: String
+  adsCode: String
+  missions: [Mission]
+  catalogues: [Catalogue]
+  abstract: String
+}
+
+"""A versioned release of a mission data archive (e.g. Gaia DR1, DR2, DR3)."""
+type DataRelease {
+  id: ID!
+  name: String!
+  mission: Mission
+  releaseDate: DateTime
+  description: String
+  catalogues: [Catalogue]
+  publications: [Publication]
+  tapEndpoint: String
+  stacEndpoint: String
+}
+
+# ─────────────────────────────────────────────
+# Input Types
+# ─────────────────────────────────────────────
+
+input CreateDatalabInput {
+  name: String!
+  description: String
+  dockerImageId: ID
+  dataCentreId: ID
+  dataVolumeIds: [ID]
+  executionEngineId: ID
+  runtimeConfiguration: RuntimeConfigurationInput
+  workspaceId: ID
+  metadata: [MetadataEntryInput]
+}
+
+input RuntimeConfigurationInput {
+  cpu: String
+  memory: String
+  gpu: String
+  timeout: Int
+  envVars: [EnvVarInput]
+}
+
+input EnvVarInput {
+  key: String!
+  value: String!
+  secret: Boolean
+}
+
+input RuntimeResourcesInput {
+  cpu: String
+  memory: String
+  gpu: String
+}
+
+input DataVolumeInput {
+  name: String!
+  size: Int
+  mountPath: String
+  dataCentreId: ID
+}
+
+input ExecutionEngineInput {
+  name: String!
+  resources: [ResourceInput]
+}
+
+input ResourceInput {
+  name: String!
+  value: String!
+  unit: String
+}
+
+input MetadataEntryInput {
+  key: String!
+  value: String!
+}
+
+input BotInput {
+  name: String!
+  description: String
+}
+
+input AssetInput {
+  name: String!
+  url: String!
+}
+
+input ActionInput {
+  action: String!
+  resourceId: ID!
+  parameters: [ParameterInput]
+}
+
+input ParameterInput {
+  name: String!
+  value: String!
+}
+
+input PipelineRunInput {
+  pipelineId: ID!
+  parameters: [ParameterInput]
+  triggeredBy: String
+}
+
+input DeletePipelineRunInput {
+  runId: ID!
+}
+
+input StopPipelineRunInput {
+  runId: ID!
+}
+
+input TestPipelineRunInput {
+  pipelineId: ID!
+  parameters: [ParameterInput]
+}
+
+input SystemPipelineInput {
+  name: String!
+  description: String
+  code: SystemPipelineCodeInput
+  parameters: [ParameterInput]
+  inputs: [InputDef]
+  outputs: [OutputDef]
+}
+
+input UpdateSystemPipelineInput {
+  id: ID!
+  description: String
+  code: SystemPipelineCodeInput
+}
+
+input DeleteSystemPipelineInput {
+  id: ID!
+}
+
+input SystemPipelineRunInput {
+  pipelineId: ID!
+  version: String
+  parameters: [ParameterInput]
+}
+
+input SystemPipelineCodeInput {
+  content: String!
+  language: String
+}
+
+input UserPipelineCodeInput {
+  content: String!
+  language: String
+  repository: String
+  branch: String
+}
+
+input CodeInput {
+  content: String!
+  language: String
+}
+
+input CreatePermissionInput {
+  name: String!
+  description: String
+  resource: String!
+  action: String!
+}
+
+input CreateRoleInput {
+  name: String!
+  description: String
+  permissionIds: [ID]
+}
+
+input UpdateRoleInput {
+  id: ID!
+  name: String
+  description: String
+  permissionIds: [ID]
+}
+
+input ScheduleInput {
+  enabled: Boolean!
+  cron: String
+  timezone: String
+}
+
+input NotificationInput {
+  type: String!
+  message: String!
+  userId: ID
+}
+
+input UpdateAnnouncementInput {
+  id: ID!
+  title: String
+  content: String
+  severity: String
+  active: Boolean
+  expiresAt: DateTime
+}
+
+input TriggerDataInput {
+  type: String!
+  payload: String
+}
+
+input InputDef {
+  name: String!
+  dataType: String
+  description: String
+  required: Boolean
+}
+
+input OutputDef {
+  name: String!
+  dataType: String
+  description: String
+}
+
+# ─────────────────────────────────────────────
+# Queries
+# ─────────────────────────────────────────────
+
+type Query {
+  # Datalab queries
+  datalab(id: ID!): Datalab
+  datalabs(workspaceId: ID, status: DatalabStatus, page: Int, pageSize: Int): [Datalab]
+  getDatalab(id: ID!): Datalab
+  getDatalabs(workspaceId: ID, status: DatalabStatus): [Datalab]
+  datalabFromInterface(interfaceId: ID!): Datalab
+  extractDatalabMetadata(id: ID!): [DatalabMetadata]
+  checkDatalabSecret(datalabId: ID!, secretName: String!): DatalabSecretCheck
+  datalabPackages(datalabId: ID!): [DatalabPackage]
+  getDatalabBuilds(datalabId: ID!): [DatalabBuild]
+  getDatalabComments(datalabId: ID!): [UserComment]
+  getDeploymentError(datalabId: ID!): DeploymentError
+  getDatalabAccessList(datalabId: ID!): [User]
+  getBuilds(page: Int, pageSize: Int): [DatalabBuild]
+
+  # Pipeline queries
+  pipelineRuns(pipelineId: ID, status: RunStatus, page: Int, pageSize: Int): [PipelineRun]
+  pipelineRunDetails(runId: ID!): PipelineRun
+  pipelineLogs(runId: ID!, page: Int, pageSize: Int): [PipelineLog]
+
+  # Data infrastructure
+  dataCentres: [DataCentre]
+  dataVolumes(dataCentreId: ID): [DataVolume]
+  dockerImages(registryId: ID): [DockerImage]
+  dockerRegistry(id: ID!): DockerRegistry
+  executionEngines: [ExecutionEngine]
+
+  # User and access
+  getUser(id: ID): User
+  getUsers(page: Int, pageSize: Int): [User]
+  getRole(id: ID!): Role
+  getRoles: [Role]
+  getPermissions: [Permission]
+  getOperatorDefinedRoles: [Role]
+  getRolesFromPermission(permissionId: ID!): [Role]
+  authorizedObjects: [String]
+
+  # Workspace
+  getWorkspace(id: ID!): Workspace
+  getWorkspaces: [Workspace]
+  isWorkspaceNameAvailable(name: String!): Boolean
+
+  # Bot
+  bot(id: ID!): Bot
+  bots: [Bot]
+
+  # Quota and logging
+  getQuota(userId: ID): Quota
+  logs(params: LogParams): [Log]
+  loggers: [String]
+  getLogLevel(logger: String!): LogLevel
+
+  # Bookmarks, announcements, help
+  getBookmarks: [String]
+  readAnnouncement(id: ID!): Announcement
+  readHelpSectionIds: HelpPageIds
+  getLicenses: [License]
+  getFileActionEnvVars(datalabId: ID!): [EnvVarInfo]
+  getAuthenticationState: AuthenticationState
+}
+
+# ─────────────────────────────────────────────
+# Mutations
+# ─────────────────────────────────────────────
+
+type Mutation {
+  # Datalab lifecycle
+  createDatalab(input: CreateDatalabInput!): Datalab
+  buildDatalab(id: ID!): DatalabBuild
+  startDatalab(id: ID!): Datalab
+  stopDatalab(id: ID!): Datalab
+  destroyDatalab(id: ID!): ActionResult
+  updateDatalabMetadata(id: ID!, metadata: [MetadataEntryInput]!): Datalab
+  updateDatalabSchedule(id: ID!, schedule: ScheduleInput!): Datalab
+  updateDatalabRuntimeConfiguration(id: ID!, config: RuntimeConfigurationInput!): Datalab
+  cloneDatalab(id: ID!, newName: String!): Datalab
+  addDatalabComment(datalabId: ID!, content: String!): UserComment
+  deleteDatalabComment(commentId: ID!): ActionResult
+
+  # Datalab access management
+  grantDatalabAccess(datalabId: ID!, userId: ID!): ActionResult
+  revokeDatalabAccess(datalabId: ID!, userId: ID!): ActionResult
+
+  # Data volumes
+  createDataVolume(input: DataVolumeInput!): DataVolume
+  deleteDataVolume(id: ID!): ActionResult
+  attachDataVolume(datalabId: ID!, volumeId: ID!, mountPath: String): Datalab
+  detachDataVolume(datalabId: ID!, volumeId: ID!): Datalab
+
+  # Pipelines (user)
+  createUserPipeline(name: String!, description: String, code: UserPipelineCodeInput): UserPipeline
+  updateUserPipeline(id: ID!, description: String, code: UserPipelineCodeInput): UserPipeline
+  deleteUserPipeline(id: ID!): ActionResult
+  runPipeline(input: PipelineRunInput!): PipelineRun
+  stopPipelineRun(input: StopPipelineRunInput!): ActionResult
+  deletePipelineRun(input: DeletePipelineRunInput!): ActionResult
+  testPipelineRun(input: TestPipelineRunInput!): PipelineRun
+
+  # Pipelines (system)
+  createSystemPipeline(input: SystemPipelineInput!): SystemPipeline
+  updateSystemPipeline(input: UpdateSystemPipelineInput!): SystemPipeline
+  deleteSystemPipeline(input: DeleteSystemPipelineInput!): ActionResult
+  runSystemPipeline(input: SystemPipelineRunInput!): PipelineRun
+
+  # Docker
+  addDockerRegistry(url: String!, name: String): DockerRegistry
+  removeDockerRegistry(id: ID!): ActionResult
+  pullDockerImage(registryId: ID!, imageName: String!, tag: String): DockerImage
+  deleteDockerImage(id: ID!): ActionResult
+
+  # Workspaces
+  createWorkspace(name: String!, description: String): Workspace
+  updateWorkspace(id: ID!, name: String, description: String): Workspace
+  deleteWorkspace(id: ID!): ActionResult
+  addWorkspaceMember(workspaceId: ID!, userId: ID!): Workspace
+  removeWorkspaceMember(workspaceId: ID!, userId: ID!): Workspace
+
+  # Users, roles, permissions
+  createRole(input: CreateRoleInput!): Role
+  updateRole(input: UpdateRoleInput!): Role
+  deleteRole(id: ID!): ActionResult
+  createPermission(input: CreatePermissionInput!): Permission
+  deletePermission(id: ID!): ActionResult
+  assignRole(userId: ID!, roleId: ID!): User
+  revokeRole(userId: ID!, roleId: ID!): User
+
+  # Bots
+  createBot(input: BotInput!): Bot
+  deleteBot(id: ID!): ActionResult
+  regenerateBotToken(id: ID!): Bot
+
+  # Logging and admin
+  setLogLevel(logger: String!, level: LogLevel!): ActionResult
+  createAnnouncement(title: String!, content: String!, severity: String, expiresAt: DateTime): Announcement
+  updateAnnouncement(input: UpdateAnnouncementInput!): Announcement
+  deleteAnnouncement(id: ID!): ActionResult
+  sendNotification(input: NotificationInput!): Notification
+  markNotificationRead(id: ID!): Notification
+
+  # Bookmarks
+  addBookmark(url: String!): ActionResult
+  removeBookmark(url: String!): ActionResult
+}
+
+# ─────────────────────────────────────────────
+# Subscriptions
+# ─────────────────────────────────────────────
+
+type Subscription {
+  """Real-time build progress for a Datalab image build."""
+  datalabBuildProgress(datalabId: ID!): BuildProgress
+
+  """Stream build log lines for a Datalab image build."""
+  datalabBuildLogs(datalabId: ID!): BuildLog
+
+  """Real-time pipeline run progress events."""
+  pipelineRunProgress(runId: ID!): PipelineRun
+
+  """Real-time deployment monitoring events (all resources)."""
+  monitoringEvents: MonitoringEvent
+}
