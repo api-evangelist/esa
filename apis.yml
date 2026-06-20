@@ -9,7 +9,7 @@ description: The European Space Agency (ESA) provides public REST and standards-
   and climate change initiative datasets (ESGF, THREDDS, OpenSearch). Data includes
   Sentinel satellite imagery, solar and heliospheric time-series, gamma-ray and stellar
   catalogues, and multi-mission Earth observation products from European space programs.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Earth Observation
 - Copernicus
