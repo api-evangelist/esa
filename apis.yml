@@ -252,7 +252,7 @@ common:
   url: rate-limits/esa-rate-limits.yml
 - type: FinOps
   url: finops/esa-finops.yml
-- type: JSONLd
+- type: JSONLD
   url: json-ld/esa-context.jsonld
 - url: graphql/esa-graphql.md
   type: GraphQL
