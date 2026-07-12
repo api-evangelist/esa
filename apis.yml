@@ -238,6 +238,8 @@ apis:
   - type: Documentation
     url: https://climate.esa.int/en/data/apis/
 common:
+- type: DomainSecurity
+  url: security/esa-domain-security.yml
 - type: Website
   url: https://www.esa.int/
 - type: Documentation
@@ -256,6 +258,8 @@ common:
   url: json-ld/esa-context.jsonld
 - url: graphql/esa-graphql.md
   type: GraphQL
+- url: https://www.esa.int/rssfeed/Our_Activities/Space_News
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
