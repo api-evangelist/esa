@@ -1,0 +1,14 @@
+{
+  "repo": "esa",
+  "feeds": [
+    {
+      "source": "https://www.esa.int/rssfeed/Our_Activities/Space_News",
+      "feed_url": "https://www.esa.int/rssfeed/Our_Activities/Space_News",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 18
+}
