@@ -238,6 +238,8 @@ apis:
   - type: Documentation
     url: https://climate.esa.int/en/data/apis/
 common:
+- type: AgenticAccess
+  url: agentic-access/esa-agentic-access.yml
 - type: DomainSecurity
   url: security/esa-domain-security.yml
 - type: Website
