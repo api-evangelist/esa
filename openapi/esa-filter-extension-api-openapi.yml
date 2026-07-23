@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: Copernicus Data Space Ecosystem (CDSE) asset-level STAC catalogue Bulk Transaction Extension Filter Extension API
+  description: 'A comprehensive and searchable catalog of Earth observation and scientific datasets that is actively maintained and updated by the Copernicus Data Space Ecosystem. The integrated STAC (SpatioTemporal Asset Catalog) API, which follows the open STAC specification, enables users to access detailed asset-level metadata, including spatial information, temporal coverage, and data specifications. This standardized interface facilitates efficient data discovery and retrieval across the extensive collection of environmental and scientific resources. More information: https://documentation.dataspace.copernicus.eu/'
+  version: 1.1.0
+servers:
+- url: /v1
+tags:
+- name: Filter Extension
+paths:
+  /queryables:
+    get:
+      tags:
+      - Filter Extension
+      summary: Queryables
+      description: Endpoint.
+      operationId: Queryables_queryables_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/schema+json:
+              schema: {}
+  /collections/{collection_id}/queryables:
+    get:
+      tags:
+      - Filter Extension
+      summary: Collection Queryables
+      description: Endpoint.
+      operationId: Collection_Queryables_collections__collection_id__queryables_get
+      parameters:
+      - name: collection_id
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Collection ID
+          title: Collection Id
+        description: Collection ID
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/schema+json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError

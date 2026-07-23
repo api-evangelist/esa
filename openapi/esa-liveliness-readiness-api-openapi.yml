@@ -1,0 +1,23 @@
+openapi: 3.1.0
+info:
+  title: Copernicus Data Space Ecosystem (CDSE) asset-level STAC catalogue Bulk Transaction Extension Liveliness/Readiness API
+  description: 'A comprehensive and searchable catalog of Earth observation and scientific datasets that is actively maintained and updated by the Copernicus Data Space Ecosystem. The integrated STAC (SpatioTemporal Asset Catalog) API, which follows the open STAC specification, enables users to access detailed asset-level metadata, including spatial information, temporal coverage, and data specifications. This standardized interface facilitates efficient data discovery and retrieval across the extensive collection of environmental and scientific resources. More information: https://documentation.dataspace.copernicus.eu/'
+  version: 1.1.0
+servers:
+- url: /v1
+tags:
+- name: Liveliness/Readiness
+paths:
+  /_mgmt/ping:
+    get:
+      tags:
+      - Liveliness/Readiness
+      summary: Ping
+      description: Liveliness/readiness probe.
+      operationId: ping__mgmt_ping_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}

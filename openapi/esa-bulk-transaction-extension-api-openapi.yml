@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: Copernicus Data Space Ecosystem (CDSE) asset-level STAC catalogue Bulk Transaction Extension API
+  description: 'A comprehensive and searchable catalog of Earth observation and scientific datasets that is actively maintained and updated by the Copernicus Data Space Ecosystem. The integrated STAC (SpatioTemporal Asset Catalog) API, which follows the open STAC specification, enables users to access detailed asset-level metadata, including spatial information, temporal coverage, and data specifications. This standardized interface facilitates efficient data discovery and retrieval across the extensive collection of environmental and scientific resources. More information: https://documentation.dataspace.copernicus.eu/'
+  version: 1.1.0
+servers:
+- url: /v1
+tags:
+- name: Bulk Transaction Extension
+paths:
+  /collections/{collection_id}/bulk_items:
+    post:
+      tags:
+      - Bulk Transaction Extension
+      summary: Bulk Create Item
+      description: Endpoint.
+      operationId: Bulk_Create_Item_collections__collection_id__bulk_items_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Items'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: string
+                title: Response Bulk Create Item Collections  Collection Id  Bulk Items Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    BulkTransactionMethod:
+      type: string
+      enum:
+      - insert
+      - upsert
+      title: BulkTransactionMethod
+      description: Bulk Transaction Methods.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Items:
+      properties:
+        items:
+          additionalProperties: true
+          type: object
+          title: Items
+        method:
+          $ref: '#/components/schemas/BulkTransactionMethod'
+          default: insert
+      type: object
+      required:
+      - items
+      title: Items

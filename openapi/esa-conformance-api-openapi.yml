@@ -1,0 +1,40 @@
+openapi: 3.1.0
+info:
+  title: Copernicus Data Space Ecosystem (CDSE) asset-level STAC catalogue Bulk Transaction Extension Conformance API
+  description: 'A comprehensive and searchable catalog of Earth observation and scientific datasets that is actively maintained and updated by the Copernicus Data Space Ecosystem. The integrated STAC (SpatioTemporal Asset Catalog) API, which follows the open STAC specification, enables users to access detailed asset-level metadata, including spatial information, temporal coverage, and data specifications. This standardized interface facilitates efficient data discovery and retrieval across the extensive collection of environmental and scientific resources. More information: https://documentation.dataspace.copernicus.eu/'
+  version: 1.1.0
+servers:
+- url: /v1
+tags:
+- name: Conformance
+paths:
+  /conformance:
+    get:
+      summary: Conformance Classes
+      description: Endpoint.
+      operationId: Conformance_Classes_conformance_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conformance'
+      tags:
+      - Conformance
+components:
+  schemas:
+    Conformance:
+      properties:
+        conformsTo:
+          items:
+            type: string
+            minLength: 1
+            format: uri
+          type: array
+          title: Conformsto
+      type: object
+      required:
+      - conformsTo
+      title: Conformance
+      description: https://github.com/radiantearth/stac-api-spec/blob/master/api-spec.md#ogc-api---features-endpoints
