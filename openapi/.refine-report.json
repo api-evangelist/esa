@@ -1,0 +1,28 @@
+{
+  "provider": "esa",
+  "sources": [
+    "esa-bulk-transaction-extension-api-openapi.yml",
+    "esa-collections-api-openapi.yml",
+    "esa-conformance-api-openapi.yml",
+    "esa-copernicus-data-space-ecosystem-cdse-asset-level-stac-catalogue-api-openapi.yml",
+    "esa-filter-extension-api-openapi.yml",
+    "esa-liveliness-readiness-api-openapi.yml",
+    "esa-search-api-openapi.yml",
+    "esa-transaction-extension-api-openapi.yml"
+  ],
+  "outputs": [
+    "esa-bulk-transaction-extension-api-openapi.yml",
+    "esa-collections-api-openapi.yml",
+    "esa-conformance-api-openapi.yml",
+    "esa-copernicus-data-space-ecosystem-cdse-asset-level-stac-catalogue-api-openapi.yml",
+    "esa-filter-extension-api-openapi.yml",
+    "esa-liveliness-readiness-api-openapi.yml",
+    "esa-search-api-openapi.yml",
+    "esa-transaction-extension-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
