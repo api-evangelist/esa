@@ -1,0 +1,970 @@
+{
+  "item": [
+    {
+      "id": "7eab5f2e-17db-491f-9758-f64a465ad233",
+      "name": "Transaction Extension",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d7a9344d-139d-4b14-93a9-d7bf157598c7",
+          "name": "Update Item",
+          "request": {
+            "name": "Update Item",
+            "description": {
+              "content": "Endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":collection_id",
+                "items",
+                ":item_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collection_id",
+                  "description": "(Required) Collection ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "item_id",
+                  "description": "(Required) Item ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"geometry\": {\n    \"type\": \"<string>\",\n    \"coordinates\": \"<array>\",\n    \"bbox\": \"<array>\"\n  },\n  \"properties\": {\n    \"datetime\": \"<dateTime>\",\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"created\": \"<dateTime>\",\n    \"updated\": \"<dateTime>\",\n    \"start_datetime\": \"<dateTime>\",\n    \"end_datetime\": \"<dateTime>\",\n    \"license\": \"<string>\",\n    \"providers\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"roles\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"url\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"roles\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"url\": \"<string>\"\n      }\n    ],\n    \"platform\": \"<string>\",\n    \"instruments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"constellation\": \"<string>\",\n    \"mission\": \"<string>\",\n    \"gsd\": \"<number>\"\n  },\n  \"id\": \"<string>\",\n  \"assets\": {\n    \"key_0\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"label:assets\": \"<string>\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"label:assets\": \"<string>\"\n    }\n  ],\n  \"bbox\": \"<array>\",\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"collection\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "95324371-3bce-4695-8070-bf0caa4b07a8",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":collection_id",
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection_id",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "item_id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "null",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4016f3b-0013-4fc1-b67f-ddbff9b43a13",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":collection_id",
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection_id",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "item_id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "null",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "059e0ba2-16df-4f79-a840-4262970f4cbe",
+          "name": "Delete Item",
+          "request": {
+            "name": "Delete Item",
+            "description": {
+              "content": "Endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":collection_id",
+                "items",
+                ":item_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collection_id",
+                  "description": "(Required) Collection ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "item_id",
+                  "description": "(Required) Item ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f838afab-d257-40d5-a248-34ddba78ee83",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":collection_id",
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection_id",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "item_id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d3ff6c8-c0d4-487c-bb77-e66817fe411c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":collection_id",
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection_id",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "item_id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3295ebdd-b208-418a-ad37-fca0e0ce28c1",
+          "name": "Create Collection",
+          "request": {
+            "name": "Create Collection",
+            "description": {
+              "content": "Endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"label:assets\": \"<string>\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"label:assets\": \"<string>\"\n    }\n  ],\n  \"type\": \"<string>\",\n  \"license\": \"<string>\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n          \"<string>\",\n          \"<string>\"\n        ],\n        [\n          \"<string>\",\n          \"<string>\"\n        ]\n      ]\n    }\n  },\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"title\": \"<string>\",\n  \"assets\": {\n    \"key_0\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_1\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"providers\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"url\": \"<string>\"\n    }\n  ],\n  \"summaries\": {\n    \"key_0\": {\n      \"minimum\": \"<number>\",\n      \"maximum\": \"<number>\"\n    },\n    \"key_1\": {\n      \"minimum\": \"<number>\",\n      \"maximum\": \"<number>\"\n    },\n    \"key_2\": {\n      \"minimum\": \"<number>\",\n      \"maximum\": \"<number>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9d9a512-c0be-4977-973d-fdad07c7e066",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"application/octet-stream\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"image/png\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    }\n  ],\n  \"type\": \"<string>\",\n  \"license\": \"<string>\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n        [\n          7405.027870157907,\n          6071.441329034204\n        ],\n        [\n          2262.701282503189,\n          2866.6857885623454\n        ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n          \"string\",\n          \"string\"\n        ],\n        [\n          \"string\",\n          \"string\"\n        ]\n      ]\n    }\n  },\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"title\": \"<string>\",\n  \"assets\": {\n    \"key_0\": {\n      \"href\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"providers\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    }\n  ],\n  \"summaries\": {\n    \"key_0\": {\n      \"minimum\": 2176.918720522889,\n      \"maximum\": 5477.098352906269\n    },\n    \"key_1\": {\n      \"minimum\": 7658.0801611640745,\n      \"maximum\": 6295.408077237813\n    },\n    \"key_2\": {\n      \"minimum\": 6416.1071925843835,\n      \"maximum\": 7473.209631710221\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"description\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"application/ndjson\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"application/schema+json\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    }\n  ],\n  \"type\": \"string\",\n  \"license\": \"string\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n        [\n          2143.24858615214,\n          6671.226157986646\n        ],\n        [\n          3909.48055563604,\n          2232.4950718616965\n        ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n          \"string\",\n          \"string\"\n        ],\n        [\n          \"string\",\n          \"string\"\n        ]\n      ]\n    }\n  },\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"http://hcBJPkpLaVVajwFZDEjckXyeu.afodUsKm6oNrK\",\n    \"http://bwxjMw.yrGJAF4Leza7AtwhpbEneDHnBlBSLZeLviLsNwdwTa4rMxs.SoiZkAQVfzs-dV+kp,i\"\n  ],\n  \"title\": \"string\",\n  \"assets\": {\n    \"key_0\": {\n      \"href\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"href\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"keywords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"providers\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    }\n  ],\n  \"summaries\": {\n    \"key_0\": {\n      \"minimum\": 4162.26892652178,\n      \"maximum\": 5294.6971562416065\n    },\n    \"key_1\": {\n      \"minimum\": 6383.279946270266,\n      \"maximum\": 9303.830386074165\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddf0f6af-9131-4398-ad06-7cb44256f8be",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"application/octet-stream\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"image/png\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    }\n  ],\n  \"type\": \"<string>\",\n  \"license\": \"<string>\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n        [\n          7405.027870157907,\n          6071.441329034204\n        ],\n        [\n          2262.701282503189,\n          2866.6857885623454\n        ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n          \"string\",\n          \"string\"\n        ],\n        [\n          \"string\",\n          \"string\"\n        ]\n      ]\n    }\n  },\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"title\": \"<string>\",\n  \"assets\": {\n    \"key_0\": {\n      \"href\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"providers\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    }\n  ],\n  \"summaries\": {\n    \"key_0\": {\n      \"minimum\": 2176.918720522889,\n      \"maximum\": 5477.098352906269\n    },\n    \"key_1\": {\n      \"minimum\": 7658.0801611640745,\n      \"maximum\": 6295.408077237813\n    },\n    \"key_2\": {\n      \"minimum\": 6416.1071925843835,\n      \"maximum\": 7473.209631710221\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a1b33a5-d4d3-4246-a543-6387aae98f06",
+          "name": "Update Collection",
+          "request": {
+            "name": "Update Collection",
+            "description": {
+              "content": "Endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":collection_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collection_id",
+                  "description": "(Required) Collection ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"label:assets\": \"<string>\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"label:assets\": \"<string>\"\n    }\n  ],\n  \"type\": \"<string>\",\n  \"license\": \"<string>\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n          \"<string>\",\n          \"<string>\"\n        ],\n        [\n          \"<string>\",\n          \"<string>\"\n        ]\n      ]\n    }\n  },\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"title\": \"<string>\",\n  \"assets\": {\n    \"key_0\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_1\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"providers\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"url\": \"<string>\"\n    }\n  ],\n  \"summaries\": {\n    \"key_0\": {\n      \"minimum\": \"<number>\",\n      \"maximum\": \"<number>\"\n    },\n    \"key_1\": {\n      \"minimum\": \"<number>\",\n      \"maximum\": \"<number>\"\n    },\n    \"key_2\": {\n      \"minimum\": \"<number>\",\n      \"maximum\": \"<number>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f05027d-ae33-400b-8c70-053043030736",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection_id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"application/octet-stream\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"image/png\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    }\n  ],\n  \"type\": \"<string>\",\n  \"license\": \"<string>\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n        [\n          7405.027870157907,\n          6071.441329034204\n        ],\n        [\n          2262.701282503189,\n          2866.6857885623454\n        ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n          \"string\",\n          \"string\"\n        ],\n        [\n          \"string\",\n          \"string\"\n        ]\n      ]\n    }\n  },\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"title\": \"<string>\",\n  \"assets\": {\n    \"key_0\": {\n      \"href\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"providers\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    }\n  ],\n  \"summaries\": {\n    \"key_0\": {\n      \"minimum\": 2176.918720522889,\n      \"maximum\": 5477.098352906269\n    },\n    \"key_1\": {\n      \"minimum\": 7658.0801611640745,\n      \"maximum\": 6295.408077237813\n    },\n    \"key_2\": {\n      \"minimum\": 6416.1071925843835,\n      \"maximum\": 7473.209631710221\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"description\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"application/ndjson\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"application/schema+json\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    }\n  ],\n  \"type\": \"string\",\n  \"license\": \"string\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n        [\n          2143.24858615214,\n          6671.226157986646\n        ],\n        [\n          3909.48055563604,\n          2232.4950718616965\n        ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n          \"string\",\n          \"string\"\n        ],\n        [\n          \"string\",\n          \"string\"\n        ]\n      ]\n    }\n  },\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"http://hcBJPkpLaVVajwFZDEjckXyeu.afodUsKm6oNrK\",\n    \"http://bwxjMw.yrGJAF4Leza7AtwhpbEneDHnBlBSLZeLviLsNwdwTa4rMxs.SoiZkAQVfzs-dV+kp,i\"\n  ],\n  \"title\": \"string\",\n  \"assets\": {\n    \"key_0\": {\n      \"href\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"href\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"keywords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"providers\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    }\n  ],\n  \"summaries\": {\n    \"key_0\": {\n      \"minimum\": 4162.26892652178,\n      \"maximum\": 5294.6971562416065\n    },\n    \"key_1\": {\n      \"minimum\": 6383.279946270266,\n      \"maximum\": 9303.830386074165\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "031d70cb-14c2-48f5-8721-479d85bc12df",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection_id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"application/octet-stream\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"image/png\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    }\n  ],\n  \"type\": \"<string>\",\n  \"license\": \"<string>\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n        [\n          7405.027870157907,\n          6071.441329034204\n        ],\n        [\n          2262.701282503189,\n          2866.6857885623454\n        ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n          \"string\",\n          \"string\"\n        ],\n        [\n          \"string\",\n          \"string\"\n        ]\n      ]\n    }\n  },\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"title\": \"<string>\",\n  \"assets\": {\n    \"key_0\": {\n      \"href\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"keywords\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"providers\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    }\n  ],\n  \"summaries\": {\n    \"key_0\": {\n      \"minimum\": 2176.918720522889,\n      \"maximum\": 5477.098352906269\n    },\n    \"key_1\": {\n      \"minimum\": 7658.0801611640745,\n      \"maximum\": 6295.408077237813\n    },\n    \"key_2\": {\n      \"minimum\": 6416.1071925843835,\n      \"maximum\": 7473.209631710221\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "367016f1-9cd6-4ee5-9754-e83bfc4023b9",
+          "name": "Delete Collection",
+          "request": {
+            "name": "Delete Collection",
+            "description": {
+              "content": "Endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":collection_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collection_id",
+                  "description": "(Required) Collection ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04ca3eec-a311-4bde-8565-05a2f3c9864f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection_id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"description\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"application/ndjson\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"application/schema+json\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\"\n    }\n  ],\n  \"type\": \"string\",\n  \"license\": \"string\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n        [\n          2143.24858615214,\n          6671.226157986646\n        ],\n        [\n          3909.48055563604,\n          2232.4950718616965\n        ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n          \"string\",\n          \"string\"\n        ],\n        [\n          \"string\",\n          \"string\"\n        ]\n      ]\n    }\n  },\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"http://hcBJPkpLaVVajwFZDEjckXyeu.afodUsKm6oNrK\",\n    \"http://bwxjMw.yrGJAF4Leza7AtwhpbEneDHnBlBSLZeLviLsNwdwTa4rMxs.SoiZkAQVfzs-dV+kp,i\"\n  ],\n  \"title\": \"string\",\n  \"assets\": {\n    \"key_0\": {\n      \"href\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"key_1\": {\n      \"href\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"keywords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"providers\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"roles\": [\n        \"string\",\n        \"string\"\n      ],\n      \"url\": \"string\"\n    }\n  ],\n  \"summaries\": {\n    \"key_0\": {\n      \"minimum\": 4162.26892652178,\n      \"maximum\": 5294.6971562416065\n    },\n    \"key_1\": {\n      \"minimum\": 6383.279946270266,\n      \"maximum\": 9303.830386074165\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "594fb67a-dbf2-4461-8ced-b1ba4751b8f2",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":collection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection_id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94f0e548-68c2-4561-b6e4-e637555a5cb2",
+          "name": "Create Item",
+          "request": {
+            "name": "Create Item",
+            "description": {
+              "content": "Endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":collection_id",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collection_id",
+                  "description": "(Required) Collection ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"geometry\": {\n    \"type\": \"<string>\",\n    \"coordinates\": \"<array>\",\n    \"bbox\": \"<array>\"\n  },\n  \"properties\": {\n    \"datetime\": \"<dateTime>\",\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"created\": \"<dateTime>\",\n    \"updated\": \"<dateTime>\",\n    \"start_datetime\": \"<dateTime>\",\n    \"end_datetime\": \"<dateTime>\",\n    \"license\": \"<string>\",\n    \"providers\": [\n      {\n        \"name\": \"<string>\",\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"roles\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"description\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"roles\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"platform\": \"<string>\",\n    \"instruments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"constellation\": \"<string>\",\n    \"mission\": \"<string>\",\n    \"gsd\": \"<number>\"\n  },\n  \"id\": \"<string>\",\n  \"assets\": {\n    \"key_0\": {\n      \"href\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"label:assets\": \"<string>\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"label:assets\": \"<string>\"\n    }\n  ],\n  \"bbox\": \"<array>\",\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"collection\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "86f11428-c74f-48f1-bb6b-fe795ca9985e",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":collection_id",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection_id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "null",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4cd6e7e-3aab-4889-a3e3-2f4a59471c67",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":collection_id",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection_id",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "null",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e061a8a0-c58d-4217-b945-2c168e823f04",
+    "name": "Copernicus Data Space Ecosystem (CDSE) asset-level STAC catalogue Bulk Transaction Extension API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A comprehensive and searchable catalog of Earth observation and scientific datasets that is actively maintained and updated by the Copernicus Data Space Ecosystem. The integrated STAC (SpatioTemporal Asset Catalog) API, which follows the open STAC specification, enables users to access detailed asset-level metadata, including spatial information, temporal coverage, and data specifications. This standardized interface facilitates efficient data discovery and retrieval across the extensive collection of environmental and scientific resources. More information: https://documentation.dataspace.copernicus.eu/",
+      "type": "text/plain"
+    }
+  }
+}

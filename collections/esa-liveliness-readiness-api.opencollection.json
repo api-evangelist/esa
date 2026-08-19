@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Copernicus Data Space Ecosystem (CDSE) asset-level STAC catalogue Bulk Transaction Extension Liveliness/Readiness API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Liveliness/Readiness",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/_mgmt/ping"
+          },
+          "docs": "Liveliness/readiness probe."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

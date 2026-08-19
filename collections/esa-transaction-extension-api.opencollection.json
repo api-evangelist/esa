@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Copernicus Data Space Ecosystem (CDSE) asset-level STAC catalogue Bulk Transaction Extension API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction Extension",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v1/collections/:collection_id/items/:item_id",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "Collection ID"
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "Item ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint."
+        },
+        {
+          "info": {
+            "name": "Delete Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v1/collections/:collection_id/items/:item_id",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "Collection ID"
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "Item ID"
+              }
+            ]
+          },
+          "docs": "Endpoint."
+        },
+        {
+          "info": {
+            "name": "Create Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/collections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint."
+        },
+        {
+          "info": {
+            "name": "Update Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v1/collections/:collection_id",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "Collection ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint."
+        },
+        {
+          "info": {
+            "name": "Delete Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v1/collections/:collection_id",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "Collection ID"
+              }
+            ]
+          },
+          "docs": "Endpoint."
+        },
+        {
+          "info": {
+            "name": "Create Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/collections/:collection_id/items",
+            "params": [
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path",
+                "description": "Collection ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

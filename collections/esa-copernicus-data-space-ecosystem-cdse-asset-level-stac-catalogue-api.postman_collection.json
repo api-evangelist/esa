@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "db05668d-2283-4897-a9f7-64f0f429d524",
+      "name": "Copernicus Data Space Ecosystem (CDSE) Asset Level STAC Catalogue",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "94037c68-63fa-467e-880e-adedbd47377b",
+          "name": "Landing Page",
+          "request": {
+            "name": "Landing Page",
+            "description": {
+              "content": "Endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91549384-a2a1-45c0-a4e0-1019eb9f82a6",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"description\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"DB,],[{/search\",\n      \"rel\": \"search\",\n      \"type\": \"application/geo+json\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\",\n      \"method\": \"GET\",\n      \"headers\": {\n        \"key_0\": false\n      },\n      \"body\": {\n        \"key_0\": 3725,\n        \"key_1\": \"string\"\n      },\n      \"merge\": false\n    },\n    {\n      \"href\": \"/search\",\n      \"rel\": \"self\",\n      \"type\": \"application/geo+json\",\n      \"title\": \"string\",\n      \"label:assets\": \"string\",\n      \"method\": \"GET\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": {\n        \"key_0\": 9849.153006365394\n      },\n      \"merge\": false\n    }\n  ],\n  \"type\": \"string\",\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"https://WWELfaJlN.vqxhkIF,tjkTqoArDpK,xj5rTUdjxK9D24SkGOic6.nCBZyIN\",\n    \"http://zPMU.aglgDW9HHTsAx,,+f.OzTI9MEpRbifOMkcz3ucUqWYgbHbB5MhacfED3nWzeswfAQD+F\"\n  ],\n  \"title\": \"string\",\n  \"conformsTo\": [\n    \"https://api.stacspec.org/v1.0.0/core\",\n    \"http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ef682960-7fc1-46ba-aee3-8e8a75f3a941",
+    "name": "Copernicus Data Space Ecosystem (CDSE) asset-level STAC catalogue Bulk Transaction Extension Copernicus Data Space Ecosystem (CDSE) Asset Level STAC Catalogue API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "A comprehensive and searchable catalog of Earth observation and scientific datasets that is actively maintained and updated by the Copernicus Data Space Ecosystem. The integrated STAC (SpatioTemporal Asset Catalog) API, which follows the open STAC specification, enables users to access detailed asset-level metadata, including spatial information, temporal coverage, and data specifications. This standardized interface facilitates efficient data discovery and retrieval across the extensive collection of environmental and scientific resources. More information: https://documentation.dataspace.copernicus.eu/",
+      "type": "text/plain"
+    }
+  }
+}

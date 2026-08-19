@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Copernicus Data Space Ecosystem (CDSE) asset-level STAC catalogue Bulk Transaction Extension Copernicus Data Space Ecosystem (CDSE) Asset Level STAC Catalogue API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Copernicus Data Space Ecosystem (CDSE) Asset Level STAC Catalogue",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Landing Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/"
+          },
+          "docs": "Endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
