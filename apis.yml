@@ -163,6 +163,12 @@ apis:
   baseURL: https://gea.esac.esa.int/tap-server/tap
   tags:
   - Astronomy
+  - GAIA
+  - TAP
+  - Stellar Catalogue
+  - Astrometry
+  tags_raw:
+  - Astronomy
   - Gaia
   - TAP
   - Stellar Catalogue
@@ -181,6 +187,13 @@ apis:
   humanURL: https://www.cosmos.esa.int/web/esdc/legacy-tap-esa
   baseURL: http://esaskylegacy.esac.esa.int/esasky-legacy-sl-tap/tap
   tags:
+  - Astronomy
+  - TAP
+  - Hipparcos
+  - CoRoT
+  - GAIA
+  - Legacy Archives
+  tags_raw:
   - Astronomy
   - TAP
   - Hipparcos
@@ -247,6 +260,8 @@ apis:
   humanURL: https://documentation.dataspace.copernicus.eu/APIs/OData.html
   baseURL: https://catalogue.dataspace.copernicus.eu/odata/v1
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -273,7 +288,8 @@ apis:
     (ESA) — 1 operation(s) for copernicus data space ecosystem (cdse) asset level stac catalogue.
   humanURL: https://documentation.dataspace.copernicus.eu/APIs/OData.html
   baseURL: https://catalogue.dataspace.copernicus.eu/odata/v1
-  tags:
+  tags: []
+  tags_raw:
   - Copernicus Data Space Ecosystem (CDSE) Asset Level STAC Catalogue
   properties:
   - type: OpenAPI
