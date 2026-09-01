@@ -175,7 +175,7 @@ apis:
   baseURL: https://gea.esac.esa.int/tap-server/tap
   tags:
   - Astronomy
-  - Gaia
+  - GAIA
   - TAP
   - Stellar Catalogue
   - Astrometry
@@ -203,7 +203,7 @@ apis:
   - TAP
   - Hipparcos
   - CoRoT
-  - Gaia
+  - GAIA
   - Legacy Archives
   tags_raw:
   - Astronomy
