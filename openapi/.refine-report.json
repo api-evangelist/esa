@@ -1,14 +1,7 @@
 {
   "provider": "esa",
   "sources": [
-    "esa-bulk-transaction-extension-api-openapi.yml",
-    "esa-collections-api-openapi.yml",
-    "esa-conformance-api-openapi.yml",
-    "esa-copernicus-data-space-ecosystem-cdse-asset-level-stac-catalogue-api-openapi.yml",
-    "esa-filter-extension-api-openapi.yml",
-    "esa-liveliness-readiness-api-openapi.yml",
-    "esa-search-api-openapi.yml",
-    "esa-transaction-extension-api-openapi.yml"
+    "_original/esa-copernicus-stac-openapi.json"
   ],
   "outputs": [
     "esa-bulk-transaction-extension-api-openapi.yml",
@@ -23,6 +16,35 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "esa-copernicus-stac-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "esa-copernicus-stac-openapi.json: tagged paths GET / -> Copernicus Data Space Ecosystem (CDSE) Asset Level STAC Catalogue",
+    "esa-copernicus-stac-openapi.json: tagged paths GET /conformance -> Conformance",
+    "esa-copernicus-stac-openapi.json: tagged paths GET /collections/{collection_id}/items/{item_id} -> Collections",
+    "esa-copernicus-stac-openapi.json: tagged paths POST /search -> Search",
+    "esa-copernicus-stac-openapi.json: tagged paths GET /search -> Search",
+    "esa-copernicus-stac-openapi.json: tagged paths GET /collections -> Collections",
+    "esa-copernicus-stac-openapi.json: tagged paths GET /collections/{collection_id} -> Collections",
+    "esa-copernicus-stac-openapi.json: tagged paths GET /collections/{collection_id}/items -> Collections",
+    "esa-copernicus-stac-openapi.json: declared missing tag: Bulk Transaction Extension",
+    "esa-copernicus-stac-openapi.json: declared missing tag: Collections",
+    "esa-copernicus-stac-openapi.json: declared missing tag: Conformance",
+    "esa-copernicus-stac-openapi.json: declared missing tag: Copernicus Data Space Ecosystem (CDSE) Asset Level STAC Catalogue",
+    "esa-copernicus-stac-openapi.json: declared missing tag: Filter Extension",
+    "esa-copernicus-stac-openapi.json: declared missing tag: Liveliness/Readiness",
+    "esa-copernicus-stac-openapi.json: declared missing tag: Search",
+    "esa-copernicus-stac-openapi.json: declared missing tag: Transaction Extension",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "esa-bulk-transaction-extension-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esa-collections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esa-conformance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esa-copernicus-data-space-ecosystem-cdse-asset-level-stac-catalogue-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esa-filter-extension-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esa-liveliness-readiness-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esa-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "esa-transaction-extension-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
