@@ -24,6 +24,15 @@ paths:
       - Copernicus Data Space Ecosystem (CDSE) Asset Level STAC Catalogue
 components:
   schemas:
+    stac_pydantic__api__links__Links:
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/SearchLink'
+        - $ref: '#/components/schemas/PaginationLink'
+        - $ref: '#/components/schemas/ItemsLink'
+        - $ref: '#/components/schemas/Link'
+      type: array
+      title: Links
     ItemsLink:
       properties:
         href:
@@ -136,105 +145,6 @@ components:
       - rel
       title: PaginationLink
       description: https://github.com/radiantearth/stac-api-spec/blob/v1.0.0/item-search/README.md#pagination
-    Link:
-      properties:
-        href:
-          type: string
-          minLength: 1
-          title: Href
-        rel:
-          type: string
-          minLength: 1
-          title: Rel
-        type:
-          anyOf:
-          - $ref: '#/components/schemas/MimeTypes'
-          - type: 'null'
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        label:assets:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label:Assets
-      additionalProperties: true
-      type: object
-      required:
-      - href
-      - rel
-      title: Link
-      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#link-object
-    stac_pydantic__api__links__Links:
-      items:
-        anyOf:
-        - $ref: '#/components/schemas/SearchLink'
-        - $ref: '#/components/schemas/PaginationLink'
-        - $ref: '#/components/schemas/ItemsLink'
-        - $ref: '#/components/schemas/Link'
-      type: array
-      title: Links
-    LandingPage:
-      properties:
-        id:
-          type: string
-          minLength: 1
-          title: Id
-        description:
-          type: string
-          minLength: 1
-          title: Description
-        stac_version:
-          type: string
-          pattern: ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
-          title: Stac Version
-          default: 1.0.0
-        links:
-          $ref: '#/components/schemas/stac_pydantic__api__links__Links'
-        stac_extensions:
-          anyOf:
-          - items:
-              type: string
-              minLength: 1
-              format: uri
-            type: array
-          - type: 'null'
-          title: Stac Extensions
-          default: []
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        type:
-          type: string
-          const: Catalog
-          title: Type
-        conformsTo:
-          items:
-            type: string
-            minLength: 1
-            format: uri
-          type: array
-          title: Conformsto
-          default:
-          - https://api.stacspec.org/v1.0.0/core
-          - http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core
-      additionalProperties: true
-      type: object
-      required:
-      - id
-      - description
-      - links
-      - type
-      title: LandingPage
-      description: 'https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/core
-
-        https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/ogcapi-features#landing-page-
-
-        https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/item-search#link-relations'
     MimeTypes:
       type: string
       enum:
@@ -325,3 +235,93 @@ components:
       - rel
       title: SearchLink
       description: https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/item-search#link-relations
+    Link:
+      properties:
+        href:
+          type: string
+          minLength: 1
+          title: Href
+        rel:
+          type: string
+          minLength: 1
+          title: Rel
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/MimeTypes'
+          - type: 'null'
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        label:assets:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label:Assets
+      additionalProperties: true
+      type: object
+      required:
+      - href
+      - rel
+      title: Link
+      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#link-object
+    LandingPage:
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        description:
+          type: string
+          minLength: 1
+          title: Description
+        stac_version:
+          type: string
+          pattern: ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+          title: Stac Version
+          default: 1.0.0
+        links:
+          $ref: '#/components/schemas/stac_pydantic__api__links__Links'
+        stac_extensions:
+          anyOf:
+          - items:
+              type: string
+              minLength: 1
+              format: uri
+            type: array
+          - type: 'null'
+          title: Stac Extensions
+          default: []
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        type:
+          type: string
+          const: Catalog
+          title: Type
+        conformsTo:
+          items:
+            type: string
+            minLength: 1
+            format: uri
+          type: array
+          title: Conformsto
+          default:
+          - https://api.stacspec.org/v1.0.0/core
+          - http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core
+      additionalProperties: true
+      type: object
+      required:
+      - id
+      - description
+      - links
+      - type
+      title: LandingPage
+      description: 'https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/core
+
+        https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/ogcapi-features#landing-page-
+
+        https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/item-search#link-relations'
