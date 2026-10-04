@@ -24,25 +24,20 @@ paths:
       - Copernicus Data Space Ecosystem (CDSE) Asset Level STAC Catalogue
 components:
   schemas:
-    SearchLink:
+    Link:
       properties:
         href:
           type: string
-          pattern: .*\/search(\?.*)?\b
+          minLength: 1
           title: Href
         rel:
           type: string
-          enum:
-          - self
-          - search
-          - next
-          - prev
+          minLength: 1
           title: Rel
         type:
-          type: string
-          const: application/geo+json
-          title: Type
-          default: application/geo+json
+          anyOf:
+          - $ref: '#/components/schemas/MimeTypes'
+          - type: 'null'
         title:
           anyOf:
           - type: string
@@ -53,36 +48,13 @@ components:
           - type: string
           - type: 'null'
           title: Label:Assets
-        method:
-          type: string
-          enum:
-          - GET
-          - POST
-          title: Method
-          default: GET
-        headers:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Headers
-        body:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Body
-        merge:
-          type: boolean
-          title: Merge
-          default: false
       additionalProperties: true
       type: object
       required:
       - href
       - rel
-      title: SearchLink
-      description: https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/item-search#link-relations
+      title: Link
+      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#link-object
     LandingPage:
       properties:
         id:
@@ -142,6 +114,62 @@ components:
         https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/ogcapi-features#landing-page-
 
         https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/item-search#link-relations'
+    PaginationLink:
+      properties:
+        href:
+          type: string
+          minLength: 1
+          title: Href
+        rel:
+          type: string
+          enum:
+          - next
+          - prev
+          title: Rel
+        type:
+          anyOf:
+          - $ref: '#/components/schemas/MimeTypes'
+          - type: 'null'
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        label:assets:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Label:Assets
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          title: Method
+          default: GET
+        headers:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Headers
+        body:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Body
+        merge:
+          type: boolean
+          title: Merge
+          default: false
+      additionalProperties: true
+      type: object
+      required:
+      - href
+      - rel
+      title: PaginationLink
+      description: https://github.com/radiantearth/stac-api-spec/blob/v1.0.0/item-search/README.md#pagination
     ItemsLink:
       properties:
         href:
@@ -229,62 +257,25 @@ components:
       - application/octet-stream
       title: MimeTypes
       description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/item-spec/item-spec.md#media-types
-    stac_pydantic__api__links__Links:
-      items:
-        anyOf:
-        - $ref: '#/components/schemas/SearchLink'
-        - $ref: '#/components/schemas/PaginationLink'
-        - $ref: '#/components/schemas/ItemsLink'
-        - $ref: '#/components/schemas/Link'
-      type: array
-      title: Links
-    Link:
+    SearchLink:
       properties:
         href:
           type: string
-          minLength: 1
-          title: Href
-        rel:
-          type: string
-          minLength: 1
-          title: Rel
-        type:
-          anyOf:
-          - $ref: '#/components/schemas/MimeTypes'
-          - type: 'null'
-        title:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Title
-        label:assets:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Label:Assets
-      additionalProperties: true
-      type: object
-      required:
-      - href
-      - rel
-      title: Link
-      description: https://github.com/radiantearth/stac-spec/blob/v1.0.0/collection-spec/collection-spec.md#link-object
-    PaginationLink:
-      properties:
-        href:
-          type: string
-          minLength: 1
+          pattern: .*\/search(\?.*)?\b
           title: Href
         rel:
           type: string
           enum:
+          - self
+          - search
           - next
           - prev
           title: Rel
         type:
-          anyOf:
-          - $ref: '#/components/schemas/MimeTypes'
-          - type: 'null'
+          type: string
+          const: application/geo+json
+          title: Type
+          default: application/geo+json
         title:
           anyOf:
           - type: string
@@ -323,5 +314,14 @@ components:
       required:
       - href
       - rel
-      title: PaginationLink
-      description: https://github.com/radiantearth/stac-api-spec/blob/v1.0.0/item-search/README.md#pagination
+      title: SearchLink
+      description: https://github.com/radiantearth/stac-api-spec/tree/v1.0.0/item-search#link-relations
+    stac_pydantic__api__links__Links:
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/SearchLink'
+        - $ref: '#/components/schemas/PaginationLink'
+        - $ref: '#/components/schemas/ItemsLink'
+        - $ref: '#/components/schemas/Link'
+      type: array
+      title: Links

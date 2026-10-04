@@ -37,6 +37,13 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    BulkTransactionMethod:
+      type: string
+      enum:
+      - insert
+      - upsert
+      title: BulkTransactionMethod
+      description: Bulk Transaction Methods.
     Items:
       properties:
         items:
@@ -80,10 +87,3 @@ components:
       - msg
       - type
       title: ValidationError
-    BulkTransactionMethod:
-      type: string
-      enum:
-      - insert
-      - upsert
-      title: BulkTransactionMethod
-      description: Bulk Transaction Methods.
